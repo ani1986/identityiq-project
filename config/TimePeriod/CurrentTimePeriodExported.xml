@@ -1,0 +1,153 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE sailpoint PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<sailpoint>
+<TimePeriod classifier="DateRange" name="first_quarter">
+  <Attributes>
+    <Map>
+      <entry key="endDate">
+        <value>
+          <Date>1167523200000</Date>
+        </value>
+      </entry>
+      <entry key="startDate">
+        <value>
+          <Date>1159660800000</Date>
+        </value>
+      </entry>
+    </Map>
+  </Attributes>
+</TimePeriod>
+<TimePeriod classifier="DateRange" name="second_quarter">
+  <Attributes>
+    <Map>
+      <entry key="endDate">
+        <value>
+          <Date>1175299200000</Date>
+        </value>
+      </entry>
+      <entry key="startDate">
+        <value>
+          <Date>1167609600000</Date>
+        </value>
+      </entry>
+    </Map>
+  </Attributes>
+</TimePeriod>
+<TimePeriod classifier="DateRange" name="third_quarter">
+  <Attributes>
+    <Map>
+      <entry key="endDate">
+        <value>
+          <Date>1183161600000</Date>
+        </value>
+      </entry>
+      <entry key="startDate">
+        <value>
+          <Date>1175385600000</Date>
+        </value>
+      </entry>
+    </Map>
+  </Attributes>
+</TimePeriod>
+<TimePeriod classifier="DateRange" name="fourth_quarter">
+  <Attributes>
+    <Map>
+      <entry key="endDate">
+        <value>
+          <Date>1191110400000</Date>
+        </value>
+      </entry>
+      <entry key="startDate">
+        <value>
+          <Date>1183248000000</Date>
+        </value>
+      </entry>
+    </Map>
+  </Attributes>
+</TimePeriod>
+<TimePeriod classifier="DateSet" name="holidays">
+  <Attributes>
+    <Map>
+      <entry key="dates">
+        <value>
+          <List>
+            <Date>1167609600000</Date>
+            <Date>1168819200000</Date>
+            <Date>1171843200000</Date>
+            <Date>1180310400000</Date>
+            <Date>1183507200000</Date>
+            <Date>1188777600000</Date>
+            <Date>1191801600000</Date>
+            <Date>1194825600000</Date>
+            <Date>1195689600000</Date>
+            <Date>1198540800000</Date>
+          </List>
+        </value>
+      </entry>
+    </Map>
+  </Attributes>
+</TimePeriod>
+<TimePeriod classifier="DaysOfWeek" name="weekdays">
+  <Attributes>
+    <Map>
+      <entry key="days">
+        <value>
+          <List>
+            <String>Monday</String>
+            <String>Tuesday</String>
+            <String>Wednesday</String>
+            <String>Thursday</String>
+            <String>Friday</String>
+          </List>
+        </value>
+      </entry>
+    </Map>
+  </Attributes>
+</TimePeriod>
+<TimePeriod classifier="DaysOfWeek" name="weekends">
+  <Attributes>
+    <Map>
+      <entry key="days">
+        <value>
+          <List>
+            <String>Saturday</String>
+            <String>Sunday</String>
+          </List>
+        </value>
+      </entry>
+    </Map>
+  </Attributes>
+</TimePeriod>
+<TimePeriod classifier="TimeOfDayRange" name="office_hours">
+  <Attributes>
+    <Map>
+      <entry key="endTime">
+        <value>
+          <Date>61200000</Date>
+        </value>
+      </entry>
+      <entry key="startTime">
+        <value>
+          <Date>32400000</Date>
+        </value>
+      </entry>
+    </Map>
+  </Attributes>
+</TimePeriod>
+<TimePeriod classifier="TimeOfDayRange" name="non_office_hours">
+  <Attributes>
+    <Map>
+      <entry key="endTime">
+        <value>
+          <Date>32400000</Date>
+        </value>
+      </entry>
+      <entry key="startTime">
+        <value>
+          <Date>61200000</Date>
+        </value>
+      </entry>
+    </Map>
+  </Attributes>
+</TimePeriod>
+</sailpoint>

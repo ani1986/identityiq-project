@@ -1,0 +1,9 @@
+*.war
+*.zip
+build/
+target/
+extract/
+base/ga/
+*.log
+config/DashboardContent/CurrentDashboardContentExported.xml
+config/DashboardLayout/CurrentDashboardLayoutExported.xml

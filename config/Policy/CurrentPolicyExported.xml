@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE sailpoint PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<sailpoint>
+<Policy certificationActions="Remediated,Mitigated,Delegated" configPage="sodpolicy.xhtml" executor="sailpoint.policy.SODPolicyExecutor" name="SOD Template" state="Inactive" template="true" type="SOD" typeKey="policy_type_sod" violationOwnerType="Manager"/>
+<Policy certificationActions="Remediated,Mitigated,Delegated" configPage="entitlementPolicy.xhtml" executor="sailpoint.policy.EntitlementSODPolicyExecutor" name="Entitlement SOD Template" state="Inactive" template="true" type="EntitlementSOD" typeKey="policy_type_entitlement_sod" violationOwnerType="Manager"/>
+<Policy certificationActions="Remediated,Mitigated,Delegated" configPage="entitlementPolicy.xhtml" executor="sailpoint.policy.EffectiveEntitlementSODPolicyExecutor" name="Effective Entitlement SOD Template" state="Inactive" template="true" type="EffectiveEntitlementSOD" typeKey="policy_type_effective_entitlement_sod" violationOwnerType="Manager"/>
+<Policy certificationActions="Acknowledged,Mitigated,Delegated" configPage="activitypolicy.xhtml" executor="sailpoint.policy.ActivityPolicyExecutor" name="Activity Template" state="Inactive" template="true" type="Activity" typeKey="policy_type_activity" violationOwnerType="Manager"/>
+<Policy certificationActions="Mitigated,Delegated" configPage="genericpolicy.xhtml" executor="sailpoint.policy.AccountPolicyExecutor" name="Account Template" state="Inactive" template="true" type="Account" typeKey="policy_type_account" violationOwnerType="Manager">
+  <GenericConstraints>
+    <GenericConstraint name="Multiple Application Accounts" violationOwnerType="None"/>
+  </GenericConstraints>
+</Policy>
+<Policy certificationActions="Mitigated,Delegated" configPage="genericpolicy.xhtml" executor="sailpoint.policy.RiskPolicyExecutor" name="Risk Template" state="Inactive" template="true" type="Risk" typeKey="policy_type_risk" violationOwnerType="Manager">
+  <Attributes>
+    <Map>
+      <entry key="compositeThreshold" value="1000"/>
+    </Map>
+  </Attributes>
+  <Signature>
+    <Inputs>
+      <Argument helpKey="policy_composite_threshold" name="compositeThreshold" type="int">
+        <Prompt>risk_template_composite_score_threshold</Prompt>
+      </Argument>
+    </Inputs>
+  </Signature>
+</Policy>
+<Policy certificationActions="Mitigated,Delegated" configPage="advancedPolicy.xhtml" executor="sailpoint.policy.GenericPolicyExecutor" name="Advanced Template" state="Inactive" template="true" type="Advanced" typeKey="policy_type_advanced" violationOwnerType="Manager"/>
+</sailpoint>
