@@ -6,7 +6,6 @@ phases:
     runtime-versions:
       java: corretto11
     commands:
-      commands:
       - echo "Installing base tools"
       - yum install -y unzip zip dos2unix tar gzip
       - echo "Checking curl"
