@@ -6,15 +6,20 @@ phases:
     runtime-versions:
       java: corretto11
     commands:
-      - echo "Installing dependencies"
-      - yum install -y ant bsf bsh unzip zip dos2unix
-      - echo "Ant binary:"
-      - which ant
-      - echo "Detecting ANT_HOME"
-      - export ANT_HOME=$(rpm -ql ant | grep '/lib/ant-launcher.jar$' | sed 's#/lib/ant-launcher.jar##')
-      - export PATH=$PATH:$ANT_HOME/bin
+      - echo "Installing base tools"
+      - yum install -y unzip zip dos2unix curl tar gzip
+      - echo "Downloading Apache Ant binary distribution"
+      - curl -L -o /tmp/apache-ant.tar.gz https://archive.apache.org/dist/ant/binaries/apache-ant-1.10.14-bin.tar.gz
+      - mkdir -p /opt
+      - tar -xzf /tmp/apache-ant.tar.gz -C /opt
+      - export ANT_HOME=/opt/apache-ant-1.10.14
+      - export PATH=$ANT_HOME/bin:$PATH
+      - mkdir -p $ANT_HOME/lib
+      - echo "Downloading BeanShell + BSF jars required by Ant script task"
+      - curl -L -o $ANT_HOME/lib/bsh-2.0b6.jar https://repo1.maven.org/maven2/org/beanshell/bsh/2.0b6/bsh-2.0b6.jar
+      - curl -L -o $ANT_HOME/lib/bsf-2.4.0.jar https://repo1.maven.org/maven2/bsf/bsf/2.4.0/bsf-2.4.0.jar
       - echo "ANT_HOME=$ANT_HOME"
-      - ls -l $ANT_HOME/lib | head
+      - which ant
       - ant -version
 
   pre_build:
@@ -28,6 +33,8 @@ phases:
   build:
     commands:
       - echo "Running IdentityIQ build"
+      - export ANT_HOME=/opt/apache-ant-1.10.14
+      - export PATH=$ANT_HOME/bin:$PATH
       - export SPTARGET=dev
       - ./build.sh war
       - echo "Listing deploy artifacts"
