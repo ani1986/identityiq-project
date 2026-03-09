@@ -6,17 +6,30 @@ phases:
     runtime-versions:
       java: corretto11
     commands:
-      - chmod +x build.sh
+      - echo "Installing build dependencies"
+      - yum install -y ant unzip zip dos2unix
+      - export ANT_HOME=/usr
+      - export PATH=$ANT_HOME/bin:$PATH
+      - echo "ANT_HOME=$ANT_HOME"
+      - echo "PATH=$PATH"
+      - ant -version
+      - which ant
 
   pre_build:
     commands:
-      - echo "Downloading IdentityIQ GA package from S3"
+      - echo "Preparing IdentityIQ build"
+      - chmod +x build.sh
+      - echo "Downloading IdentityIQ GA package"
       - aws s3 cp s3://download-local/identityiq-8.5.zip base/ga/
+      - ls -l base/ga
 
   build:
     commands:
+      - echo "Running IdentityIQ build"
       - export SPTARGET=dev
       - ./build.sh war
+      - echo "Listing deploy artifacts"
+      - ls -l build/deploy
 
 artifacts:
   files:
