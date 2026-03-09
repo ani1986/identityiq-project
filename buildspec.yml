@@ -7,7 +7,7 @@ phases:
       java: corretto11
     commands:
       - echo "Installing dependencies"
-      - yum install -y ant unzip zip dos2unix
+      - yum install -y ant bsf bsh unzip zip dos2unix
       - echo "Ant binary:"
       - which ant
       - echo "Detecting ANT_HOME"
