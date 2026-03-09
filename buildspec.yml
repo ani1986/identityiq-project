@@ -6,8 +6,11 @@ phases:
     runtime-versions:
       java: corretto11
     commands:
+      commands:
       - echo "Installing base tools"
-      - yum install -y unzip zip dos2unix curl tar gzip
+      - yum install -y unzip zip dos2unix tar gzip
+      - echo "Checking curl"
+      - curl --version
       - echo "Downloading Apache Ant binary distribution"
       - curl -L -o /tmp/apache-ant.tar.gz https://archive.apache.org/dist/ant/binaries/apache-ant-1.10.14-bin.tar.gz
       - mkdir -p /opt
@@ -15,7 +18,7 @@ phases:
       - export ANT_HOME=/opt/apache-ant-1.10.14
       - export PATH=$ANT_HOME/bin:$PATH
       - mkdir -p $ANT_HOME/lib
-      - echo "Downloading BeanShell + BSF jars required by Ant script task"
+      - echo "Downloading BeanShell + BSF jars"
       - curl -L -o $ANT_HOME/lib/bsh-2.0b6.jar https://repo1.maven.org/maven2/org/beanshell/bsh/2.0b6/bsh-2.0b6.jar
       - curl -L -o $ANT_HOME/lib/bsf-2.4.0.jar https://repo1.maven.org/maven2/bsf/bsf/2.4.0/bsf-2.4.0.jar
       - echo "ANT_HOME=$ANT_HOME"
