@@ -1,0 +1,25 @@
+version: 0.2
+
+phases:
+
+  install:
+    runtime-versions:
+      java: corretto11
+    commands:
+      - chmod +x build.sh
+
+  pre_build:
+    commands:
+      - echo "Downloading IdentityIQ GA package from S3"
+      - aws s3 cp s3://download-local/identityiq-8.5.zip base/ga/
+
+  build:
+    commands:
+      - export SPTARGET=dev
+      - ./build.sh war
+
+artifacts:
+  files:
+    - appspec.yml
+    - scripts/**/*
+    - build/deploy/**/*
