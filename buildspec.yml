@@ -6,14 +6,16 @@ phases:
     runtime-versions:
       java: corretto11
     commands:
-      - echo "Installing build dependencies"
+      - echo "Installing dependencies"
       - yum install -y ant unzip zip dos2unix
-      - export ANT_HOME=/usr
-      - export PATH=$ANT_HOME/bin:$PATH
-      - echo "ANT_HOME=$ANT_HOME"
-      - echo "PATH=$PATH"
-      - ant -version
+      - echo "Ant binary:"
       - which ant
+      - echo "Detecting ANT_HOME"
+      - export ANT_HOME=$(rpm -ql ant | grep '/lib/ant-launcher.jar$' | sed 's#/lib/ant-launcher.jar##')
+      - export PATH=$PATH:$ANT_HOME/bin
+      - echo "ANT_HOME=$ANT_HOME"
+      - ls -l $ANT_HOME/lib | head
+      - ant -version
 
   pre_build:
     commands:
