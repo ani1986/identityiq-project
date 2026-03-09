@@ -4,11 +4,17 @@ os: linux
 files:
   - source: build/deploy/identityiq.war
     destination: /usr/bin/spBuild/opt/tomcat/webapps
+    overwrite: yes
 
 hooks:
   BeforeInstall:
     - location: scripts/remove_old_war.sh
       timeout: 300
+      runas: root
+
+  AfterInstall:
+    - location: scripts/deploy_war.sh
+      timeout: 1800
       runas: root
 
   ApplicationStart:
