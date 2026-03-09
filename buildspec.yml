@@ -20,6 +20,7 @@ phases:
       - echo "Downloading BeanShell + BSF jars"
       - curl -L -o $ANT_HOME/lib/bsh-2.0b6.jar https://repo1.maven.org/maven2/org/beanshell/bsh/2.0b6/bsh-2.0b6.jar
       - curl -L -o $ANT_HOME/lib/bsf-2.4.0.jar https://repo1.maven.org/maven2/bsf/bsf/2.4.0/bsf-2.4.0.jar
+      - curl -L -o $ANT_HOME/lib/commons-logging-1.2.jar https://repo1.maven.org/maven2/commons-logging/commons-logging/1.2/commons-logging-1.2.jar
       - echo "ANT_HOME=$ANT_HOME"
       - which ant
       - ant -version
