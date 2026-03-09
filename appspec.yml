@@ -1,0 +1,15 @@
+version: 0.0
+os: linux
+
+files:
+  - source: build/deploy/identityiq.war
+    destination: /usr/bin/spBuild/opt/tomcat/webapps
+    overwrite: yes
+
+hooks:
+  ApplicationStop:
+    - location: scripts/stop_tomcat.sh
+      timeout: 60
+  ApplicationStart:
+    - location: scripts/start_tomcat.sh
+      timeout: 60
