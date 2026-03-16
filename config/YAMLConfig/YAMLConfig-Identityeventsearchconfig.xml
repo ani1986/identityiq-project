@@ -1,0 +1,278 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE YAMLConfig PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<YAMLConfig name="identityEventSearchConfig" type="SearchMap">
+  <YamlText>
+      
+      searchConfigDescriptors:
+
+        AccountChanged:
+          searchEventConfigDescriptors:
+            - property: attributes,application,componentIds,displayName,entitlements,extendedAttributes,instance,iiqDisabled,iiqLocked,manuallyCorrelated,nativeIdentity,uuid
+              searchPropertyConfigDescriptors:
+                - property: acctAppId
+                - property: acctAppName
+                - property: acctAppInstance
+                - property: acctDisplayName
+                - property: acctNativeId
+                - property: oldValue
+                - property: newValue
+
+        AccountAdded:
+          searchEventConfigDescriptors:
+            - property: accounts
+              searchPropertyConfigDescriptors:
+                - property: acctAppId
+                - property: acctAppName
+                - property: acctAppInstance
+                - property: acctDisplayName
+                - property: acctNativeId
+
+        AccountRemoved:
+          searchEventConfigDescriptors:
+            - property: accounts
+              searchPropertyConfigDescriptors:
+                - property: acctAppId
+                - property: acctAppName
+                - property: acctAppInstance
+                - property: acctDisplayName
+                - property: acctNativeId
+
+        AssignedRoleAdded:
+          searchEventConfigDescriptors:
+            - property: roleAssignments
+              searchPropertyConfigDescriptors:
+                - property: identityEntitlementId
+                  jsonSource: eventDetails
+                  attributePath: /identityEntitlementId
+                - property: requestItemId
+                  jsonSource: eventDetails
+                  attributePath: /requestItem/id
+                - property: pendingRequestItemId
+                  jsonSource: eventDetails
+                  attributePath: /pendingRequestItem/id
+                - property: qryProperty1
+                  jsonSource: eventDetails
+                  attributePath: /id
+                - property: qryProperty2
+                  jsonSource: eventDetails
+                  attributePath: /name
+                - property: qryProperty3
+                  jsonSource: eventDetails
+                  attributePath: /displayableName
+                - property: qryProperty4
+                  jsonSource: eventDetails
+                  attributePath: /owner/id
+                - property: qryProperty5
+                  jsonSource: eventDetails
+                  attributePath: /type
+
+
+        AssignedRoleRemoved:
+          searchEventConfigDescriptors:
+            - property: roleAssignments
+              searchPropertyConfigDescriptors:
+                - property: identityEntitlementId
+                  jsonSource: eventDetails
+                  attributePath: /identityEntitlementId
+                - property: qryProperty1
+                  jsonSource: eventDetails
+                  attributePath: /id
+                - property: qryProperty2
+                  jsonSource: eventDetails
+                  attributePath: /name
+                - property: qryProperty3
+                  jsonSource: eventDetails
+                  attributePath: /displayableName
+                - property: qryProperty4
+                  jsonSource: eventDetails
+                  attributePath: /owner/id
+                - property: qryProperty5
+                  jsonSource: eventDetails
+                  attributePath: /type
+
+        DetectedRoleAdded:
+          searchEventConfigDescriptors:
+            - property: roleDetections
+              searchPropertyConfigDescriptors:
+                - property: identityEntitlementId
+                  jsonSource: eventDetails
+                  attributePath: /identityEntitlementId
+                - property: requestItemId
+                  jsonSource: eventDetails
+                  attributePath: /requestItem/id
+                - property: pendingRequestItemId
+                  jsonSource: eventDetails
+                  attributePath: /pendingRequestItem/id
+                - property: qryProperty1
+                  jsonSource: eventDetails
+                  attributePath: /id
+                - property: qryProperty2
+                  jsonSource: eventDetails
+                  attributePath: /name
+                - property: qryProperty3
+                  jsonSource: eventDetails
+                  attributePath: /displayableName
+                - property: qryProperty4
+                  jsonSource: eventDetails
+                  attributePath: /owner/id
+                - property: qryProperty5
+                  jsonSource: eventDetails
+                  attributePath: /type
+
+        DetectedRoleRemoved:
+          searchEventConfigDescriptors:
+            - property: roleDetections
+              searchPropertyConfigDescriptors:
+                - property: identityEntitlementId
+                  jsonSource: eventDetails
+                  attributePath: /identityEntitlementId
+                - property: qryProperty1
+                  jsonSource: eventDetails
+                  attributePath: /id
+                - property: qryProperty2
+                  jsonSource: eventDetails
+                  attributePath: /name
+                - property: qryProperty3
+                  jsonSource: eventDetails
+                  attributePath: /displayableName
+                - property: qryProperty4
+                  jsonSource: eventDetails
+                  attributePath: /owner/id
+                - property: qryProperty5
+                  jsonSource: eventDetails
+                  attributePath: /type
+
+        EntitlementRemoved:
+          searchEventConfigDescriptors:
+            - property: entitlements
+              searchPropertyConfigDescriptors:
+                - property: identityEntitlementId
+                  jsonSource: eventDetails
+                  attributePath: /identityEntitlementId
+                - property: qryProperty1
+                  jsonSource: eventDetails
+                  attributePath: /appName
+                - property: qryProperty2
+                  jsonSource: eventDetails
+                  attributePath: /name
+                - property: qryProperty3
+                  jsonSource: eventDetails
+                  attributePath: /type
+                - property: qryProperty4
+                  jsonSource: eventDetails
+                  attributePath: /value
+                - property: qryProperty5
+                  jsonSource: eventDetails
+                  attributePath: /displayValue
+
+        EntitlementAdded:
+          searchEventConfigDescriptors:
+            - property: entitlements
+              searchPropertyConfigDescriptors:
+                - property: identityEntitlementId
+                  jsonSource: eventDetails
+                  attributePath: /identityEntitlementId
+                - property: requestItemId
+                  jsonSource: eventDetails
+                  attributePath: /requestItem/id
+                - property: pendingRequestItemId
+                  jsonSource: eventDetails
+                  attributePath: /pendingRequestItem/id
+                - property: qryProperty1
+                  jsonSource: eventDetails
+                  attributePath: /appName
+                - property: qryProperty2
+                  jsonSource: eventDetails
+                  attributePath: /name
+                - property: qryProperty3
+                  jsonSource: eventDetails
+                  attributePath: /type
+                - property: qryProperty4
+                  jsonSource: eventDetails
+                  attributePath: /value
+                - property: qryProperty5
+                  jsonSource: eventDetails
+                  attributePath: /displayValue
+
+        IdentityChanged:
+          searchEventConfigDescriptors:
+            - property: name,firstname,lastname,email,isManager,displayName,displayableName,inactive,type,softwareVersion
+              searchPropertyConfigDescriptors:
+                - property: oldValue
+                - property: newValue
+            - property: capabilities,workgroups
+              searchPropertyConfigDescriptors:
+                - property: oldValue
+                - property: newValue
+                - property: qryProperty1
+                  jsonSource: eventDetails
+                  attributePath: /newValue/id
+                - property: qryProperty2
+                  jsonSource: eventDetails
+                  attributePath: /oldValue/id
+            - property: manager
+              searchPropertyConfigDescriptors:
+                - property: oldValue
+                - property: newValue
+                - property: qryProperty1
+                  jsonSource: eventDetails
+                  attributePath: /id/oldValue
+                - property: qryProperty2
+                  jsonSource: eventDetails
+                  attributePath: /id/newValue
+            - property: forwarding,attributes,extendedAttributes,extendedAttributesIdentity,extendedAttributesNamed
+              searchPropertyConfigDescriptors:
+                - property: oldValue
+                - property: newValue
+                - property: qryProperty1
+                  jsonSource: eventDetails
+                  attributePath: /attributeType
+                - property: propertyName
+                  jsonSource: eventDetails
+                  attributePath: /attributeName
+
+        IdentityCertificationEntityCompleted:
+          searchEventConfigDescriptors:
+            - property: certEntityCompleted
+              searchPropertyConfigDescriptors:
+                - property: qryProperty1
+                  jsonSource: extractedObject
+                  attributePath: /eventImage/imageFields/id
+                - property: qryProperty2
+                  jsonSource: extractedObject
+                  attributePath: /eventImage/imageFields/type
+                - property: qryProperty3
+                  jsonSource: extractedObject
+                  attributePath: /eventImage/imageFields/name
+                - property: qryProperty4
+                  jsonSource: extractedObject
+                  attributePath: /eventImage/imageFields/signed
+
+        IdentityPolicyViolationChange:
+          searchEventConfigDescriptors:
+            - property: status,active
+              searchPropertyConfigDescriptors:
+                - property: oldValue
+                - property: newValue
+                - property: qryProperty1
+                  jsonSource: eventDetails
+                  attributePath: /attributeType
+                - property: propertyName
+                  jsonSource: eventDetails
+                  attributePath: /attributeName
+
+        IdentityPolicyViolationMitigation:
+          searchEventConfigDescriptors:
+            - property: mitigationExpirations
+              searchPropertyConfigDescriptors:
+                - property: oldValue
+                - property: newValue
+                - property: qryProperty1
+                  jsonSource: eventDetails
+                  attributePath: /attributeType
+                - property: propertyName
+                  jsonSource: eventDetails
+                  attributePath: /attributeName
+      
+    </YamlText>
+</YAMLConfig>

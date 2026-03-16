@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE TaskResult PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<TaskResult host="Saha_dell" launched="1773615945051" launcher="spadmin" live="true" name="SSB XML Export" schedule="6363364a11314a258699d0188a965702" type="Generic">
+  <Definition>
+    <Reference class="sailpoint.object.TaskDefinition" name="SSB XML Export"/>
+  </Definition>
+  <Owner>
+    <Reference class="sailpoint.object.Identity" name="spadmin"/>
+  </Owner>
+  <Progress>Exporting class AdaptiveCardNotificationTemplate</Progress>
+</TaskResult>

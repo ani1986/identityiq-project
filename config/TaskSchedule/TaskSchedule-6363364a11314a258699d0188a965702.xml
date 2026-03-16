@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE TaskSchedule PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<TaskSchedule name="6363364a11314a258699d0188a965702" state="Executing">
+  <Arguments>
+    <Map>
+      <entry key="executor" value="SSB XML Export"/>
+      <entry key="launcher" value="spadmin"/>
+      <entry key="locale" value="en_GB"/>
+      <entry key="timezone" value="Australia/Sydney"/>
+    </Map>
+  </Arguments>
+  <Description>Immediate task runner</Description>
+</TaskSchedule>

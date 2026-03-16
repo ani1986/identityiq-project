@@ -1,0 +1,71 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE TaskDefinition PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<TaskDefinition executor="sailpoint.task.DataExtractExecutor" formPath="/monitor/tasks/dataExtract.xhtml" name="Data Extract" progressInterval="5000" progressMode="String" resultRenderer="dataExtractResult.xhtml" subType="task_item_type_system" template="true" type="System">
+  <Attributes>
+    <Map>
+      <entry key="enableNamedTimestamp" value="true"/>
+      <entry key="lossLimit" value="2500"/>
+      <entry key="maxExtractPartitions" value="50"/>
+      <entry key="maxFailuresAbsolute" value="500"/>
+      <entry key="maxFailuresPercent" value="5"/>
+      <entry key="maxObjectAttempts" value="5"/>
+      <entry key="maxObjectsPerExtractPartition" value="50000"/>
+      <entry key="minExtractPartitions" value="5"/>
+    </Map>
+  </Attributes>
+  <Description>
+      Template for Data Extract Task.
+    </Description>
+  <Signature>
+    <Inputs>
+      <Argument filterString="type == YAMLConfig.Type.Extract &amp;&amp; subtype.isNull()" helpKey="help_task_data_extract_config" name="configuration" required="true" type="YAMLConfig">
+        <Prompt>task_in_data_extract_config</Prompt>
+      </Argument>
+      <Argument helpKey="help_task_data_extract_publisher" name="publisher" required="true" type="string">
+        <Prompt>task_in_data_extract_publisher</Prompt>
+      </Argument>
+    </Inputs>
+    <Returns>
+      <Argument name="totalDeletionExtractedObjects" type="int">
+        <Prompt>task_out_data_extract_totalDeletionExtractedObjects</Prompt>
+      </Argument>
+      <Argument name="totalDeletionExtractedObjectsDispatched" type="int">
+        <Prompt>task_out_data_extract_totalDeletionExtractedObjectsDispatched</Prompt>
+      </Argument>
+      <Argument name="totalObjectMessages" type="int">
+        <Prompt>task_out_data_extract_totalObjectMessages</Prompt>
+      </Argument>
+      <Argument name="totalModifiedObjectMessages" type="int">
+        <Prompt>task_out_data_extract_totalModifiedObjectMessages</Prompt>
+      </Argument>
+      <Argument name="totalReattemptObjectMessages" type="int">
+        <Prompt>task_out_data_extract_totalReattemptObjectMessages</Prompt>
+      </Argument>
+      <Argument name="totalSeenObjects" type="int">
+        <Prompt>task_out_data_extract_totalSeenObjects</Prompt>
+      </Argument>
+      <Argument name="totalUnseenObjects" type="int">
+        <Prompt>task_out_data_extract_totalUnseenObjects</Prompt>
+      </Argument>
+      <Argument name="totalExtractedObjects" type="int">
+        <Prompt>task_out_data_extract_totalExtractedObjects</Prompt>
+      </Argument>
+      <Argument name="totalExtractedObjectsNotFound" type="int">
+        <Prompt>task_out_data_extract_totalExtractedObjectsNotFound</Prompt>
+      </Argument>
+      <Argument name="totalExtractedObjectsFailed" type="int">
+        <Prompt>task_out_data_extract_totalExtractedObjectsFailed</Prompt>
+      </Argument>
+      <Argument name="totalExtractedObjectsPublished" type="int">
+        <Prompt>task_out_data_extract_totalExtractedObjectsPublished</Prompt>
+      </Argument>
+      <Argument name="totalPublishingFails" type="int">
+        <Prompt>task_out_data_extract_totalPublishingFails</Prompt>
+      </Argument>
+      <Argument name="droppedObjects" type="int">
+        <Prompt>task_out_data_extract_totalDroppedObjects</Prompt>
+      </Argument>
+      <Argument name="extractDetails" type="complex"/>
+    </Returns>
+  </Signature>
+</TaskDefinition>

@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE AdaptiveCardNotificationTemplate PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<AdaptiveCardNotificationTemplate name="Work Item Assignment Adaptive Card">
+  <Body>
+      {
+      "type": "AdaptiveCard",
+      "version": "1.2",
+      "body": [
+      {
+      "type": "TextBlock",
+      "text": "#if ($requesterName)$requesterName #{else}The system #{end} has assigned the following work item to you: _${workItemName}_.",
+      "wrap": true
+      }
+      ],
+      "actions": [
+      {
+      "type": "Action.OpenUrl",
+      "title": "$adaptiveCardButtonName",
+      "url": "$webUrl"
+      }
+      ]
+      }
+    </Body>
+  <Description>
+      Adaptive Card Notification Template for notifying work item assignee that they have
+      been assigned a work item.
+    </Description>
+</AdaptiveCardNotificationTemplate>

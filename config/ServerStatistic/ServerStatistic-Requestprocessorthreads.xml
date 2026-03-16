@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE ServerStatistic PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<ServerStatistic name="requestProcessorThreads" snapshotName="1773382657162" value="0" valueType="int">
+  <Host>
+    <Reference class="sailpoint.object.Server" name="Saha_dell"/>
+  </Host>
+  <MonitoringStatisticRef>
+    <Reference class="sailpoint.object.MonitoringStatistic" name="requestProcessorThreads"/>
+  </MonitoringStatisticRef>
+</ServerStatistic>

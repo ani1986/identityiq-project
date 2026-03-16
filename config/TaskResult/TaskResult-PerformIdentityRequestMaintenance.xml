@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE TaskResult PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<TaskResult completed="1773613141747" completionStatus="Success" host="Saha_dell" launched="1773613141181" launcher="System" name="Perform Identity Request Maintenance" schedule="Perform Identity Request Maintenance" type="System">
+  <Attributes>
+    <Map>
+      <entry key="requestsPruned" value="0"/>
+      <entry key="requestsScanned" value="0"/>
+    </Map>
+  </Attributes>
+  <Definition>
+    <Reference class="sailpoint.object.TaskDefinition" name="Perform Identity Request Maintenance"/>
+  </Definition>
+  <Owner>
+    <Reference class="sailpoint.object.Identity" name="spadmin"/>
+  </Owner>
+</TaskResult>

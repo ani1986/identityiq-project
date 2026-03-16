@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE YAMLConfig PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<YAMLConfig name="AccessHistoryExtractConfig" subtype="AccessHistory" type="Extract">
+  <YamlText>
+      
+
+      extractedObjects:
+        account:
+          deleteTransformFormat: full
+        capability:
+          deleteTransformFormat: full
+        certification:
+          filterString: &gt;-
+            phase == Certification.Phase.End &amp;&amp;
+            type.in
+            ({
+            sailpoint.object.Certification.Type.Manager,
+            sailpoint.object.Certification.Type.ApplicationOwner,
+            sailpoint.object.Certification.Type.Identity,
+            sailpoint.object.Certification.Type.Group,
+            sailpoint.object.Certification.Type.Focused,
+            sailpoint.object.Certification.Type.BusinessRoleMembership
+            })
+        certificationItem:
+          deleteTransformFormat: full
+          filterString: &gt;-
+            action.status == CertificationAction.Status.Remediated &amp;&amp;
+            completed.notNull() &amp;&amp;
+            (parent.type == CertificationEntity.Type.Identity || parent.type == CertificationEntity.Type.AccountGroup || parent.type == CertificationEntity.Type.DataOwner)
+        identity:
+          deleteTransformFormat: full
+        identityEntitlement:
+          deleteTransformFormat: full
+        identityHistoryItem:
+          deleteTransformFormat: full
+          filterString: status == CertificationAction.Status.Remediated &amp;&amp; type == IdentityHistoryItem.Type.Decision &amp;&amp; certificationType == CertificationItem.Type.PolicyViolation
+        identityRequest:
+          deleteTransformFormat: full
+        identityRequestItem:
+          deleteTransformFormat: full
+        managedAttribute:
+          deleteTransformFormat: full
+        objectConfig:
+        policyViolation:
+          deleteTransformFormat: full
+        role:
+          deleteTransformFormat: full
+        workgroup:
+          deleteTransformFormat: full
+      transformConfigurationName: AccessHistoryTransformConfig
+      
+    </YamlText>
+</YAMLConfig>

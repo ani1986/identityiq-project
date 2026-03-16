@@ -1,0 +1,1230 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE YAMLConfig PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<YAMLConfig name="AccessHistoryTransformConfig" type="Transform">
+  <YamlText>
+      
+      excludeBooleanFalse: true
+      imageConfigDescriptors:
+
+        identity:
+          includeHash: true
+          hashProperty: smartHash
+          objectClassName: sailpoint.object.Identity
+          objectTransformerConfigDescriptors:
+            - type: sailpoint.dataextract.conversion.ExtendedIdentityAttributes
+              args:
+                excludedKeys: ""
+                saveAs: "extendedAttributesIdentity"
+          imagePropertyConfigDescriptors:
+            - property: id
+            - property: name
+            - property: firstname
+            - property: lastname
+            - property: displayName
+            - property: displayableName
+              hashExclude: true
+            - property: email
+            - property: type
+            - property: softwareVersion
+            - property: capabilities
+              propertyTransformerConfigDescriptors:
+                - type: sailpoint.dataextract.conversion.CapabilityTransformer
+            - property: managerStatus
+              newName: isManager
+              type: bool
+            - property: workgroups
+              type: object
+              objectName: identityRef
+              transformType: elements
+            - property: administrator
+              type: object
+              objectName: identityRef
+            - property: manager
+              type: object
+              objectName: identityRef
+            - property: inactive
+            - property: bundles
+              newName: detectedRoles
+              type: object
+              objectName: bundleRef
+              transformType: elements
+            - property: assignedRoles
+              type: object
+              objectName: bundleRef
+              transformType: elements
+            - property: mitigationExpirations
+              type: object
+              objectName: mitigationExpirationRef
+              transformType: elements
+            - property: roleAssignments
+              type: object
+              objectName: roleAssignment
+              transformType: elements
+            - property: roleDetections
+              type: object
+              objectName: roleDetection
+              transformType: elements
+            - property: id
+              newName: entitlements
+              type: none
+              propertyTransformerConfigDescriptors:
+                - type: sailpoint.dataextract.conversion.IdentityIdEntitlements
+                  args:
+                    objectName: identityEntitlementBrief
+                    keyFields:
+                      - appId
+                      - nativeIdentity
+                      - instance
+                      - name
+                      - type
+                      - value
+                      - assignmentId
+                    saveAs: "__key"
+                    separator: "|"
+            - property: id
+              newName: policyViolations
+              type: none
+              propertyTransformerConfigDescriptors:
+                - type: sailpoint.dataextract.conversion.IdentityIdPolicyViolations
+                  args:
+                    objectName: policyViolationBrief
+                    keyFields:
+                      - policyName
+                      - constraintName
+                    saveAs: "__key"
+                    separator: "|"
+            - property: id
+              newName: accounts
+              type: none
+              propertyTransformerConfigDescriptors:
+                - type: sailpoint.dataextract.conversion.IdentityIdAccounts
+                  args:
+                    objectName: accountBrief
+                    keyFields:
+                      - applicationId
+                      - uuid||nativeIdentity
+                    saveAs: "__key"
+                    separator: "|"
+            - property: attributes
+              type: none
+              propertyTransformerConfigDescriptors:
+                - type: sailpoint.dataextract.conversion.AttributesWithExclusions
+                  args:
+                    excludedKeys: name,firstname,lastname,displayName,inactive,email,type
+                    objectConfigTypes: system,standard,unclear
+            - property: extendedAttributes
+              type: none
+              propertyTransformerConfigDescriptors:
+                - type: sailpoint.dataextract.conversion.AttributesWithExclusions
+                  args:
+                    objectConfigTypes: extended
+            - property: attributes
+              newName: extendedAttributesNamed
+              type: none
+              propertyTransformerConfigDescriptors:
+                - type: sailpoint.dataextract.conversion.AttributesWithExclusions
+                  args:
+                    objectConfigTypes: named
+            - property: preferences
+              newName: forwarding
+              propertyTransformerConfigDescriptors:
+              - type: sailpoint.dataextract.conversion.MapToObject
+                args:
+                  keys: forward,forwardStartDate,forwardEndDate
+
+        workgroup:
+          includeHash: true
+          hashProperty: smartHash
+          objectClassName: sailpoint.object.Identity
+          objectClassSubType: workgroup
+          imagePropertyConfigDescriptors:
+            - property: id
+            - property: name
+            - property: displayName
+            - property: email
+            - property: description
+            - property: capabilities
+              propertyTransformerConfigDescriptors:
+                - type: sailpoint.dataextract.conversion.CapabilityTransformer
+            - property: owner
+              type: object
+              objectName: identityRef
+            - property: inactive
+            - property: attributes
+              type: none
+              propertyTransformerConfigDescriptors:
+                - type: sailpoint.dataextract.conversion.AttributesWithExclusions
+                  args:
+                    excludedKeys: displayName,email
+                    objectConfigTypes: system,standard,unclear
+            - property: preferences
+              newName: notificationOption
+              propertyTransformerConfigDescriptors:
+              - type: sailpoint.dataextract.conversion.MapToObject
+                args:
+                  keys: workgroupNotificationOption
+
+        role:
+          includeHash: true
+          hashProperty: smartHash
+          attributesContainer:
+          objectClassName: sailpoint.object.Bundle
+          objectTransformerConfigDescriptors:
+            - type: sailpoint.dataextract.conversion.ExtendedIdentityAttributes
+              args:
+                excludedKeys: ""
+                saveAs: "extendedAttributesIdentity"
+          imagePropertyConfigDescriptors:
+            - attribute: accountSelectorRules
+              objectName: accountSelectorRules
+              type: object
+            - property: id
+            - property: name
+            - property: type
+            - property: applications
+              hashExclude: true
+              type: none
+              propertyTransformerConfigDescriptors:
+                - type: sailpoint.dataextract.conversion.RoleApplicationsTransformer
+                  args:
+                    applicationObjectName: applicationRef
+                    roleObjectName: bundleRef
+            - property: assignedScope
+            - property: assignedScopePath
+            - property: displayName
+            - property: descriptions
+              newName: sysDescriptions
+            - property: profiles
+              type: object
+              objectName: profile
+              transformType: elements
+            - property: disabled
+              type: bool
+            - property: iiqElevatedAccess
+              newName: elevatedAccess
+              type: bool
+            - property: owner
+              type: object
+              objectName: identityRef
+            - property: classifications
+              type: object
+              objectName: objectClassificationRef
+              transformType: elements
+            - property: activityEnabled
+              newName: enableActivityMonitoring
+            - property: mergeTemplates
+            - property: allowDuplicateAccounts
+              newName: allowMultipleAccounts
+            - property: inheritance
+              newName: supers
+              type: object
+              objectName: bundleRef
+              transformType: elements
+            - property: permits
+              newName: permittedRoles
+              type: object
+              objectName: bundleRef
+              transformType: elements
+            - property: requirements
+              newName: requiredRoles
+              type: object
+              objectName: bundleRef
+              transformType: elements
+            - property: activationDate
+              type: unixtime
+            - property: deactivationDate
+              type: unixtime
+            - property: attributes
+              type: none
+              propertyTransformerConfigDescriptors:
+                - type: sailpoint.dataextract.conversion.AttributesWithExclusions
+                  args:
+                    excludedKeys: displayName,sysDescriptions
+                    objectConfigTypes: system,standard,unclear
+            - property: extendedAttributes
+              type: none
+              propertyTransformerConfigDescriptors:
+                - type: sailpoint.dataextract.conversion.AttributesWithExclusions
+                  args:
+                    objectConfigTypes: extended
+            - property: attributes
+              newName: extendedAttributesNamed
+              type: none
+              propertyTransformerConfigDescriptors:
+                - type: sailpoint.dataextract.conversion.AttributesWithExclusions
+                  args:
+                    objectConfigTypes: named
+            - property: provisioningForms
+              type: object
+              objectName: formItem
+              transformType: elements
+            - property: provisioningPlan
+              propertyTransformerConfigDescriptors:
+                - type: sailpoint.dataextract.conversion.ProvisioningPlanTransformer
+            - property: selector
+              type: object
+              objectName: identitySelector
+
+        identityRequest:
+          includeHash: true
+          hashProperty: smartHash
+          attributesContainer:
+          objectClassName: sailpoint.object.IdentityRequest
+          imagePropertyConfigDescriptors:
+            - property: id
+            - property: name
+            - property: owner
+            - property: endDate
+              type: unixtime
+            - property: assignedScope
+            - property: assignedScopePath
+            - property: hasMessages
+            - property: externalTicketId
+            - property: completionStatus
+            - property: executionStatus
+            - property: targetId
+            - property: targetId
+              newName : targetName
+              propertyTransformerConfigDescriptors:
+                - type: sailpoint.dataextract.conversion.IdentityIdToName
+            - property: targetDisplayName
+            - property: targetClass
+            - property: type
+            - property: verified
+              type: unixtime
+            - property: state
+            - property: source
+            - property: requesterId
+            - property: requesterDisplayName
+            - property: priority
+
+        identityRequestItem:
+          includeHash: true
+          hashProperty: smartHash
+          attributesContainer:
+          objectClassName: sailpoint.object.IdentityRequestItem
+          objectTransformerConfigDescriptors:
+            - type: sailpoint.dataextract.conversion.IdentityRequestBridge
+              args:
+                objectName: identityRequestToItem
+          imagePropertyConfigDescriptors:
+            - property: id
+            - property: name
+            - property: value
+            - property: id
+              newName: displayableValue
+              propertyTransformerConfigDescriptors:
+                - type: sailpoint.dataextract.conversion.IdentityRequestItemDisplayableValue
+            - property: annotation
+            - property: displayName
+            - property: nativeIdentity
+            - property: instance
+            - property: application
+            - property: ownerName
+            - property: approverName
+            - property: operation
+            - property: assignmentId
+            - property: compilationStatus
+            - property: expansionCause
+            - property: provisioningEngine
+            - property: approvalState
+            - property: provisioningState
+            - property: identityRequest
+            - property: retries
+            - property: owner
+              type: object
+              objectName: identityRef
+            - attribute: provisioningPlan
+              propertyTransformerConfigDescriptors:
+                - type: sailpoint.dataextract.conversion.ProvisioningPlanTransformer
+            - property: attributes
+              type: none
+              propertyTransformerConfigDescriptors:
+                - type: sailpoint.dataextract.conversion.AttributesWithExclusions
+                  args:
+                    excludedKeys: provisioningPlan
+                    objectConfigTypes: any
+
+        identityRequestToItem:
+          includeHash: true
+          hashProperty: smartHash
+          imagePropertyConfigDescriptors:
+            - property: requesterId
+            - property: requesterDisplayName
+            - property: targetId
+            - property: targetDisplayName
+            - property: targetClass
+
+
+        capability:
+          includeHash: true
+          hashProperty: smartHash
+          objectClassName: sailpoint.object.Capability
+          imagePropertyConfigDescriptors:
+            - property: id
+            - property: name
+            - property: description
+              newName: descriptionKey
+            - property: displayName
+              newName: displayNameKey
+            - property: inheritedCapabilities
+              propertyTransformerConfigDescriptors:
+                - type: sailpoint.dataextract.conversion.CapabilityTransformer
+            - property: rights
+              type: object
+              transformType: elements
+              objectName: sprightRef
+
+        managedAttribute:
+          includeHash: true
+          hashProperty: smartHash
+          attributesContainer:
+          objectClassName: sailpoint.object.ManagedAttribute
+          imagePropertyConfigDescriptors:
+            - property: id
+            - property: hash
+              newName: managedAttributeHash
+              hashExclude: true
+            - property: owner
+              type: object
+              objectName: identityRef
+            - property: displayableName
+              hashExclude: true
+            - property: application
+            - property: type
+            - property: attribute
+            - property: value
+            - property: requestable
+              type: bool
+            - property: lastRefresh
+              hashExclude: true
+            - property: lastTargetAggregation
+              hashExclude: true
+            - property: uncorrelated
+              type: bool
+            - property: aggregated
+              type: bool
+            - property: iiqElevatedAccess
+              newName: elevatedAccess
+              type: bool
+            - property: permissions
+              type: object
+              objectName: profile_permission
+              transformType: elements
+            - property: targetPermissions
+              type: object
+              objectName: profile_permission
+              transformType: elements
+            - property: classifications
+              type: object
+              objectName: objectClassificationRef
+              transformType: elements
+            - property: inheritance
+              newName: supers
+              type: object
+              objectName: managedAttributeRef
+              transformType: elements
+            - attribute: sysDescriptions
+              hashExclude: true
+            - property: extendedAttributes
+              type: none
+              propertyTransformerConfigDescriptors:
+                - type: sailpoint.dataextract.conversion.AttributesWithExclusions
+                  args:
+                    objectConfigTypes: extended
+            - property: attributes
+              newName: extendedAttributesNamed
+              type: none
+              propertyTransformerConfigDescriptors:
+                - type: sailpoint.dataextract.conversion.AttributesWithExclusions
+                  args:
+                    objectConfigTypes: named
+            - property: attributes
+              type: none
+              propertyTransformerConfigDescriptors:
+                - type: sailpoint.dataextract.conversion.AttributesWithExclusions
+                  args:
+                    excludedKeys: sysDescriptions
+                    objectConfigTypes: system,standard,unclear
+
+        policyViolation:
+          includeHash: true
+          hashProperty: smartHash
+          objectClassName: sailpoint.object.PolicyViolation
+          imagePropertyConfigDescriptors:
+            - property: id
+            - property: renderer
+            - property: identity
+              type: object
+              objectName: identityRef
+            - property: active
+              type: bool
+            - property: policyId
+            - property: policyName
+            - property: owner
+              type: object
+              objectName: identityRef
+            - property: constraintId
+            - property: constraintName
+            - property: leftBundles
+            - property: rightBundles
+            - property: bundlesMarkedForRemediation
+            - property: bundlesMarkedForRemediation
+              newName: bundleIdsMarkedForRemediation
+              propertyTransformerConfigDescriptors:
+                - type: sailpoint.dataextract.conversion.BundleNamesToIds
+            - property: entitlementsMarkedForRemediation
+            - property: entitlementsMarkedForRemediation
+              newName: entitlementsInfoMarkedForRemediation
+              propertyTransformerConfigDescriptors:
+                - type: sailpoint.dataextract.conversion.PolicyViolationEntitlementInfo
+            - property: entitlementsMarkedForRemediation
+              newName: contributingRolesForRemediation
+              propertyTransformerConfigDescriptors:
+                - type: sailpoint.dataextract.conversion.PolicyViolationContributingBundle
+            - property: mitigator
+            - property: activityId
+            - property: status
+            - property: description
+            - property: relevantApps
+              transformType: elements
+            - property: violatingEntitlements
+              type: object
+              objectName: matchTerm
+              transformType: elements
+            - property: arguments
+              type: none
+              propertyTransformerConfigDescriptors:
+                - type: sailpoint.dataextract.conversion.AttributesWithExclusions
+                  args:
+                    excludedKeys: RelevantApplications, ViolatingEntitlements
+                    objectConfigTypes: any
+
+        identityHistoryItem:
+          includeHash: true
+          hashProperty: smartHash
+          objectClassName: sailpoint.object.IdentityHistoryItem
+          imagePropertyConfigDescriptors:
+            - property: id
+            - property: action
+              type: object
+              objectName: certificationAction
+            - property: actor
+            - property: certifiableDescriptor
+              type: object
+              objectName: certifiableDescriptor
+            - property: certificationType
+            - property: constraintName
+            - property: entryDate
+              type: unixtime
+            - property: identity
+              type: object
+              objectName: identityRef
+            - property: policy
+            - property: status
+            - property: type
+
+        certificationItem:
+          includeHash: true
+          hashProperty: smartHash
+          objectClassName: sailpoint.object.CertificationItem
+          imagePropertyConfigDescriptors:
+            - property: id
+            - property: exceptionApplication
+            - property: exceptionAttributeName
+            - property: exceptionAttributeValue
+            - property: exceptionEntitlements
+              newName: entitlementSnapshot
+              type: object
+              objectName: entitlementSnapshot
+            - property: bundleEntitlements
+              type: object
+              transformType: elements
+              objectName: entitlementSnapshot
+            - property: type
+            - property: subType
+            - property: bundle
+            - property: bundleAssignmentId
+            - property: summaryStatus
+            - property: targetDisplayName
+            - property: targetName
+            - property: targetId
+            - property: action
+              type: object
+              objectName: certificationAction
+            - property: certification
+              type: object
+              objectName: certificationBrief
+            - property: parent
+              type: object
+              objectName: certificationEntity
+            - property: completed
+              type: unixtime
+
+        certificationBrief:
+          imagePropertyConfigDescriptors:
+            - property: id
+            - property: name
+
+        certificationAction:
+          imagePropertyConfigDescriptors:
+            - property: id
+            - property: decisionDate
+              type: unixtime
+            - property: status
+            - property: actorDisplayName
+            - property: actorName
+            - property: remediationAction
+            - property: completionState
+            - property: remediationCompleted
+              type: bool
+            - property: autoDecision
+              type: bool
+            - property: reviewed
+              type: bool
+            - property: remediationDetails
+              propertyTransformerConfigDescriptors:
+                - type: sailpoint.dataextract.conversion.ProvisioningPlanTransformer
+
+        entitlementSnapshot:
+          imagePropertyConfigDescriptors:
+            - property: application
+            - property: instance
+            - property: nativeIdentity
+            - property: displayName
+            - property: attributes
+            - property: permissions
+              type: object
+              transformType: elements
+              objectName: profile_permission
+            - property: accountOnly
+              type: bool
+
+        sprightRef:
+          imagePropertyConfigDescriptors:
+            - property: name
+            - property: id
+
+        identityEntitlementBrief:
+          objectTransformerConfigDescriptors:
+            - type: sailpoint.dataextract.conversion.ManagedAttributeBridge
+              args:
+                objectName: managedAttributeToIdentityEntitlementBrief
+          imagePropertyConfigDescriptors:
+            - property: id
+            - property: appName
+            - property: appId
+            - property: instance
+            - property: nativeIdentity
+            - property: name
+            - property: id
+              newName: accountName
+              propertyTransformerConfigDescriptors:
+                - type: sailpoint.dataextract.conversion.EntitlementAccountName
+            - property: value
+            - property: type
+            - property: grantedByRole
+              type: bool
+            - property: pendingRequestItem
+            - property: assignmentId
+            - property: requestItem
+            - property: startDate
+              type: unixtime
+            - property: endDate
+              type: unixtime
+            - property: sourceDetectedRoles
+            - property: sourceAssignableRoles
+
+        policyViolationBrief:
+          imagePropertyConfigDescriptors:
+            - property: id
+            - property: policyName
+            - property: constraintName
+
+        accountBrief:
+          imagePropertyConfigDescriptors:
+            - property: id
+            - property: uuid
+            - property: nativeIdentity
+            - property: applicationId
+
+        profile:
+          attributesContainer:
+          imagePropertyConfigDescriptors:
+            - property: name
+            - property: description
+              newName: descriptionKey
+            - property: disabled
+              type: bool
+            - property: application
+            - property: accountType
+            - property: constraints
+              type: none
+              propertyTransformerConfigDescriptors:
+                - type: sailpoint.dataextract.conversion.FilterTransformer
+              transformType: elements
+            - property: permissions
+              type: object
+              objectName: profile_permission
+              transformType: elements
+            - property: attributes
+              type: none
+              propertyTransformerConfigDescriptors:
+                - type: sailpoint.dataextract.conversion.AttributesWithExclusions
+                  args:
+                    objectConfigTypes: any
+
+        profile_permission:
+          attributesContainer:
+          imagePropertyConfigDescriptors:
+            - property: annotation
+            - property: rightsList
+              newName: rights
+            - property: target
+            - property: target
+              newName: __key
+            - property: attributes
+              type: none
+              propertyTransformerConfigDescriptors:
+                - type: sailpoint.dataextract.conversion.AttributesWithExclusions
+                  args:
+                    objectConfigTypes: any
+
+        account:
+          includeHash: true
+          hashProperty: smartHash
+          objectClassName: sailpoint.object.Link
+          imagePropertyConfigDescriptors:
+            - property: id
+            - property: application
+            - property: nativeIdentity
+            - property: uuid
+            - property: iiqLocked
+            - property: iiqDisabled
+            - property: displayName
+            - property: displayableName
+            - property: attributes
+              type: none
+              propertyTransformerConfigDescriptors:
+                - type: sailpoint.dataextract.conversion.LinkApplicationAccountSchemaTransformer
+                  args:
+                    excludedKeys: displayName,IIQLocked,IIQDisabled
+                    objectConfigTypes: system,standard,unclear
+            - property: extendedAttributes
+              type: none
+              propertyTransformerConfigDescriptors:
+                - type: sailpoint.dataextract.conversion.AttributesWithExclusions
+                  args:
+                    objectConfigTypes: extended
+            - property: attributes
+              newName: extendedAttributesNamed
+              type: none
+              propertyTransformerConfigDescriptors:
+                - type: sailpoint.dataextract.conversion.AttributesWithExclusions
+                  args:
+                    objectConfigTypes: named
+            - property: componentIds
+            - property: identity
+              type: object
+              objectName: identityRef
+            - property: instance
+            - property: lastRefresh
+              hashExclude: true
+            - property: lastTargetAggregation
+              hashExclude: true
+            - property: manuallyCorrelated
+
+        certificationEntity:
+          objectClassName: sailpoint.object.CertificationEntity
+          imagePropertyConfigDescriptors:
+            - property: targetId
+            - property: targetName
+            - property: type
+            - property: completed
+              type: unixtime
+
+        identityEntitlement:
+          includeHash: true
+          hashProperty: smartHash
+          objectTransformerConfigDescriptors:
+            - type: sailpoint.dataextract.conversion.ManagedAttributeBridge
+              args:
+                objectName: managedAttributeToIdentityEntitlement
+          objectClassName: sailpoint.object.IdentityEntitlement
+          imagePropertyConfigDescriptors:
+            - property: allowed
+              type: bool
+            - property: assigned
+              type: bool
+            - property: aggregationState
+            - property: application
+            - property: assignmentId
+            - property: assignmentNote
+            - property: certificationItem
+            - property: connected
+              type: bool
+            - property: disconnected
+              type: bool
+            - property: grantedByRole
+              type: bool
+            - property: id
+            - property: id
+              newName: accountName
+              propertyTransformerConfigDescriptors:
+                - type: sailpoint.dataextract.conversion.EntitlementAccountName
+            - property: identity
+            - property: name
+              newName: attributeName
+            - property: value
+              newName: roleId
+              propertyTransformerConfigDescriptors:
+                - type: sailpoint.dataextract.conversion.RoleIdFromName
+            - property: pendingCertificationItem
+            - property: pendingRequestItem
+            - property: requestItem
+            - property: source
+            - property: sourceAssignableRoles
+            - property: sourceDetectedRoles
+            - property: type
+            - property: value
+              newName: attributeValue
+            - property: displayName
+            - property: nativeIdentity
+            - property: startDate
+              type: unixtime
+            - property: endDate
+              type: unixtime
+
+        mitigationExpirationRef:
+          imagePropertyConfigDescriptors:
+            - property: id
+            - property: action
+            - property: comments
+            - property: created
+            - property: expiration
+            - property: lastActionDate
+            - property: certifiableDescriptor
+              type: object
+              objectName: certifiableDescriptorRef
+            - property: certifiableDescriptor
+              newName: __key
+              propertyTransformerConfigDescriptors:
+                - type: sailpoint.dataextract.conversion.PolicyViolationID
+            - property: identity
+              type: object
+              objectName: identityRef
+            - property: mitigator
+              type: object
+              objectName: identityRef
+
+        certifiableDescriptor:
+          imagePropertyConfigDescriptors:
+            - property: policyViolation
+              type: object
+              objectName: policyViolation
+
+        certifiableDescriptorRef:
+          imagePropertyConfigDescriptors:
+            - property: policyViolation
+              type: object
+              objectName: policyViolationBrief
+
+        accountSelectorRules:
+          imagePropertyConfigDescriptors:
+            - property: bundleLevelAccountSelectorRule
+            - property: applicationAccountSelectorRules
+              transformType: elements
+              type: object
+              objectName: applicationAccountSelectorRule
+
+        applicationAccountSelectorRule:
+          imagePropertyConfigDescriptors:
+            - property: application
+            - property: rule
+
+        certification:
+          objectClassName: sailpoint.object.Certification
+          imagePropertyConfigDescriptors:
+            - property: id
+            - property: name
+            - property: type
+              propertyTransformerConfigDescriptors:
+                - type: sailpoint.dataextract.conversion.CertTypeToDisplayType
+            - property: phase
+            - property: finished
+              type: unixtime
+            - property: signed
+              type: unixtime
+            - property: certifiers
+            - property: entities
+              type: object
+              objectName: certificationEntity
+              transformType: elements
+
+        identityRef:
+          imagePropertyConfigDescriptors:
+            - property: name
+            - property: id
+            - property: displayName
+              hashExclude: true
+
+        bundleRef:
+          imagePropertyConfigDescriptors:
+            - property: name
+            - property: id
+            - property: type
+            - property: displayName
+              hashExclude: true
+            - property: displayableName
+              hashExclude: true
+            - property: owner
+              type: object
+              objectName: identityRef
+
+        managedAttributeRef:
+          imagePropertyConfigDescriptors:
+            - property: id
+            - property: type
+            - property: displayableName
+              hashExclude: true
+
+        roleDetection:
+          objectTransformerConfigDescriptors:
+            - type: sailpoint.dataextract.conversion.UniqueKeyGenTransformer
+              args:
+                fields:
+                  - roleId
+                  - assignmentIds
+                saveAs: "__key"
+                separator: "|"
+          imagePropertyConfigDescriptors:
+            - property: roleId
+            - property: roleName
+            - property: roleId
+              newName: displayableName
+              propertyTransformerConfigDescriptors:
+                - type: sailpoint.dataextract.conversion.RoleDisplayableName
+            - property: roleId
+              newName: roleType
+              propertyTransformerConfigDescriptors:
+                - type: sailpoint.dataextract.conversion.RoleType
+            - property: roleId
+              newName: roleOwner
+              propertyTransformerConfigDescriptors:
+                - type: sailpoint.dataextract.conversion.RoleOwner
+            - property: date
+            - property: assignmentIds
+            - property: targets
+              newName: roleTargets
+              type: object
+              transformType: elements
+              objectName: roleTarget
+
+        roleAssignment:
+          objectTransformerConfigDescriptors:
+            - type: sailpoint.dataextract.conversion.UniqueKeyGenTransformer
+              args:
+                fields:
+                  - roleId
+                  - assignmentId
+                saveAs: "__key"
+                separator: "|"
+          imagePropertyConfigDescriptors:
+            - property: roleId
+            - property: roleName
+            - property: roleId
+              newName: displayableName
+              propertyTransformerConfigDescriptors:
+                - type: sailpoint.dataextract.conversion.RoleDisplayableName
+            - property: roleId
+              newName: roleType
+              propertyTransformerConfigDescriptors:
+                - type: sailpoint.dataextract.conversion.RoleType
+            - property: roleId
+              newName: roleOwner
+              propertyTransformerConfigDescriptors:
+                - type: sailpoint.dataextract.conversion.RoleOwner
+            - property: targets
+              newName: roleTargets
+              type: object
+              transformType: elements
+              objectName: roleTarget
+            - property: comments
+            - property: assigner
+            - property: date
+            - property: source
+            - property: negative
+            - property: startDate
+            - property: endDate
+            - property: assignmentId
+
+        roleTarget:
+          imagePropertyConfigDescriptors:
+            - property: applicationId
+            - property: applicationName
+            - property: nativeIdentity
+            - property: displayName
+            - property: roleName
+            - property: elevatedAccess
+              type: bool
+            - property: items
+              newName: accountItems
+              type: object
+              transformType: elements
+              objectName: accountItem
+
+        accountItem:
+          imagePropertyConfigDescriptors:
+            - property: permission
+              type: bool
+            - property: name
+            - property: displayName
+            - property: annotation
+            - property: value
+
+        objectClassificationRef:
+          imagePropertyConfigDescriptors:
+            - property: id
+            - property: classification
+              type: object
+              objectName: classificationRef
+
+        classificationRef:
+          imagePropertyConfigDescriptors:
+            - property: name
+            - property: id
+            - property: origin
+            - property: displayName
+              hashExclude: true
+
+        formItem:
+          imagePropertyConfigDescriptors:
+            - property: id
+            - property: name
+            - property: description
+            - property: application
+            - property: hidden
+            - property: readOnly
+            - property: formRef
+              type: object
+              objectName: formRefRef
+            - property: pageTitle
+            - property: subtitle
+            - property: title
+            - property: includeHiddenFields
+            - property: hideIncompleteFields
+            - property: sections
+              type: object
+              objectName: sectionRef
+              transformType: elements
+
+        formRefRef:
+          imagePropertyConfigDescriptors:
+            - property: id
+            - property: name
+
+        sectionRef:
+          imagePropertyConfigDescriptors:
+            - property: name
+            - property: fields
+              type: object
+              objectName: field
+              transformType: elements
+
+        field:
+          imagePropertyConfigDescriptors:
+            - property: name
+            - property: value
+            - property: displayType
+            - property: format
+            - property: helpKey
+              newName: helpText
+            - property: filterString
+              newName: filter
+            - property: permission
+            - property: reviewRequired
+            - property: authoritative
+            - property: dynamic
+            - property: readOnly
+            - property: hidden
+            - property: displayOnly
+            - property: ownerDefinition
+              newName: owner
+              type: object
+              objectName: dynamicValueRef
+            - property: validationRule
+            - property: validationScript
+              type: object
+              objectName: scriptRef
+            - property: rule
+            - property: script
+              type: object
+              objectName: scriptRef
+            - property: allowedValuesDefinition
+              type: object
+              objectName: dynamicValueRef
+
+        dynamicValueRef:
+          imagePropertyConfigDescriptors:
+            - property: rule
+            - property: script
+              type: object
+              objectName: scriptRef
+            - property: value
+
+        identitySelector:
+          imagePropertyConfigDescriptors:
+            - property: summary
+            - property: script
+              type: object
+              objectName: scriptRef
+            - property: rule
+            - property: population
+              type: object
+              objectName: groupDefinition
+            - property: filter
+              type: object
+              objectName: compoundFilter
+            - property: matchExpression
+              type: object
+              objectName: matchExpression
+
+        compoundFilter:
+          imagePropertyConfigDescriptors:
+            - property: applications
+            - property: filter
+              type: none
+              propertyTransformerConfigDescriptors:
+                - type: sailpoint.dataextract.conversion.FilterTransformer
+                  args:
+                    excludeProperties:
+                    excludeNull: true
+                    excludeEmpty: true
+
+        matchTerm:
+          imagePropertyConfigDescriptors:
+            - property: application
+            - property: targetSource
+              type: object
+              objectName: targetSource
+            - property: permission
+            - property: checkEffective
+            - property: type
+            - property: name
+            - property: value
+            - property: container
+            - property: and
+            - property: negative
+            - property: children
+              type: object
+              objectName: matchTerm
+              transformType: elements
+            - property: contributingEntitlements
+              type: object
+              objectName: contributingEntitlement
+              transformType: elements
+
+        targetSource:
+          imagePropertyConfigDescriptors:
+            - property: name
+            - property: collector
+            - property: config
+              type: none
+              propertyTransformerConfigDescriptors:
+                - type: sailpoint.dataextract.conversion.AttributesWithExclusions
+                  args:
+                    objectConfigTypes: any
+            - property: targets
+            - property: correlationRule
+            - property: transformationRule
+            - property: creationRule
+            - property: refreshRule
+
+        contributingEntitlement:
+          imagePropertyConfigDescriptors:
+            - property: source
+            - property: type
+            - property: path
+            - property: classificationNames
+            - property: iiqElevatedAccess
+              newName: elevatedAccess
+
+        matchExpression:
+          imagePropertyConfigDescriptors:
+            - property: application
+            - property: terms
+              type: object
+              objectName: matchTerm
+              transformType: elements
+            - property: and
+
+        groupDefinition:
+          imagePropertyConfigDescriptors:
+            - property: private
+            - property: factory
+              type: object
+              objectName: groupFactory
+            - property: filter
+              type: none
+              propertyTransformerConfigDescriptors:
+                - type: sailpoint.dataextract.conversion.FilterTransformer
+                  args:
+                    excludeProperties:
+                    excludeNull: true
+                    excludeEmpty: true
+            - property: nullGroup
+
+        groupFactory:
+          imagePropertyConfigDescriptors:
+            - property: factoryAttribute
+            - property: enabled
+            - property: groupOwnerRule
+
+        managedAttributeToIdentityEntitlement:
+          imagePropertyConfigDescriptors:
+            - property: classifications
+              type: object
+              objectName: objectClassificationRef
+              transformType: elements
+            - property: displayName
+              newName: displayValue
+            - property: iiqElevatedAccess
+              newName: elevatedAccess
+              type: bool
+
+        managedAttributeToIdentityEntitlementBrief:
+          imagePropertyConfigDescriptors:
+            - property: displayName
+              newName: displayValue
+
+        scriptRef:
+          imagePropertyConfigDescriptors:
+            - property: language
+            - property: source
+
+        applicationRef:
+          imagePropertyConfigDescriptors:
+            - property: id
+            - property: name
+
+        objectConfig:
+          objectClassName: sailpoint.object.ObjectConfig
+          imagePropertyConfigDescriptors:
+            - property: id
+            - property: name
+            - property: objectAttributes
+              type: object
+              objectName: objectAttributesRef
+              transformType: elements
+
+        objectAttributesRef:
+          objectClassName: sailpoint.object.ObjectAttribute
+          imagePropertyConfigDescriptors:
+            - property: name
+            - property: displayName
+            - property: type
+            - property: name
+              newName: __key
+      
+    </YamlText>
+</YAMLConfig>

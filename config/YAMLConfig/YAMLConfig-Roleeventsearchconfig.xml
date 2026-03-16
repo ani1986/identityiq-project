@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE YAMLConfig PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<YAMLConfig name="roleEventSearchConfig" type="SearchMap">
+  <YamlText>
+      
+      searchConfigDescriptors:
+
+        RoleChanged:
+          searchEventConfigDescriptors:
+            - property: name,displayName,displayableName,type,sysDescriptions,activationDate,deactivationDate
+              searchPropertyConfigDescriptors:
+                - property: oldValue
+                - property: newValue
+            - property: owner
+              searchPropertyConfigDescriptors:
+                - property: oldValue
+                - property: newValue
+                - property: qryProperty1
+                  jsonSource: eventDetails
+                  attributePath: /id/oldValue
+                - property: qryProperty2
+                  jsonSource: eventDetails
+                  attributePath: /id/newValue
+            - property: attributes,extendedAttributes,extendedAttributesIdentity,extendedAttributesNamed
+              searchPropertyConfigDescriptors:
+                - property: oldValue
+                - property: newValue
+                - property: qryProperty1
+                  jsonSource: eventDetails
+                  attributePath: /attributeType
+                - property: propertyName
+                  jsonSource: eventDetails
+                  attributePath: /attributeName
+
+      
+    </YamlText>
+</YAMLConfig>

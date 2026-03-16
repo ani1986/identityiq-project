@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE UIPreferences PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<UIPreferences>
+  <Owner>
+    <Reference class="sailpoint.object.Identity" name="spadmin"/>
+  </Owner>
+  <Attributes>
+    <Map>
+      <entry key="gridStates">
+        <value>
+          <List>
+            <GridState name="taskDefinitionsGridState" pageSize="25" state="o%3Acolumns%3Da%253Ao%25253Aid%25253Ds%2525253Aname%255Eo%25253Aid%25253Ds%2525253Adescription%255Eo%25253Aid%25253Ds%2525253Asubtype%255Eo%25253Aid%25253Ds%2525253Atype%5Esort%3Do%253Aproperty%253Ds%25253Atype%255Edirection%253Ds%25253AASC%255Eroot%253Ds%25253Adata"/>
+          </List>
+        </value>
+      </entry>
+    </Map>
+  </Attributes>
+</UIPreferences>

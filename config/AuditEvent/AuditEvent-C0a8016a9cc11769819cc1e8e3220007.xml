@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE AuditEvent PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<AuditEvent accountName="asaha" action="IdentityCreateRequestStart" application="IIQ" clientHost="172.31.14.92" interface="LCM" serverHost="ip-172-31-30-58.ap-southeast-2.compute.internal" source="spadmin" target="asaha">
+  <Attributes>
+    <Map>
+      <entry key="flow" value="IdentityCreateRequest"/>
+      <entry key="id" value="02ad5e2ce56d4a95979b4180e2210141"/>
+      <entry key="interface" value="LCM"/>
+      <entry key="operation" value="Create"/>
+    </Map>
+  </Attributes>
+</AuditEvent>

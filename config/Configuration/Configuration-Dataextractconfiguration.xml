@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE Configuration PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<Configuration name="DataExtractConfiguration">
+  <Attributes>
+    <Map>
+      <entry key="dataExtractTasksEnabled" value="true"/>
+    </Map>
+  </Attributes>
+</Configuration>

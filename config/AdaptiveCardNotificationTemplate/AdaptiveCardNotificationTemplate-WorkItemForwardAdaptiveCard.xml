@@ -1,0 +1,77 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE AdaptiveCardNotificationTemplate PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<AdaptiveCardNotificationTemplate name="Work Item Forward Adaptive Card">
+  <Body>
+{
+    "type": "AdaptiveCard",
+    "version": "1.2",
+    "body": [
+    {
+      "type": "TextBlock",
+      "text": "$requester forwarded work item _${workItemName}_ from _${previousOwner}_ to **${newOwner}** on $spTools.formatDate($forwardDate,3,1)",
+      "wrap": true,
+      "horizontalAlignment": "Left"
+    },
+#if ($commentText)
+
+    {
+      "type": "Table",
+      "columns": [
+        {
+          "width": 1
+        },
+        {
+          "width": 1
+        }
+      ],
+      "rows": [
+        {
+          "type": "TableRow",
+          "cells": [
+            {
+              "type": "TableCell",
+              "items": [
+                {
+                  "type": "TextBlock",
+                  "text": "Comments",
+                  "wrap": true
+                }
+              ]
+            },
+            {
+              "type": "TableCell",
+              "items": [
+                {
+                  "type": "TextBlock",
+                  "text": "$commentText",
+                  "wrap": true
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "firstRowAsHeaders": false,
+      "roundedCorners": true,
+      "spacing": "Small"
+    },
+#end
+    {
+     "type": "ActionSet",
+     "actions": [
+       {
+         "type": "Action.OpenUrl",
+         "title": "$adaptiveCardButtonName",
+         "url": "$webUrl"
+       }
+     ]
+    }
+   ]
+}
+
+    </Body>
+  <Description>
+      Adaptive Card Notification Template for notifying the requester/new owner of a work item
+      that it has been forwarded.
+    </Description>
+</AdaptiveCardNotificationTemplate>

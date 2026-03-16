@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE TaskResult PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<TaskResult completed="1773613150029" completionStatus="Success" host="Saha_dell" launched="1773613140641" launcher="System" name="Dispatch Access History daily" partitioned="true" runLength="9" runLengthAverage="9" schedule="Dispatch Access History daily" type="System">
+  <Attributes>
+    <Map>
+      <entry key="taskResultPartitions">
+        <value>
+          <List>
+            <TaskResult completed="1773613147287" completionStatus="Success" host="Saha_dell" launched="1773613147114" name="Intercepted Delete Processor"/>
+            <TaskResult completed="1773613148451" completionStatus="Success" host="Saha_dell" launched="1773613147459" name="Extract Partition Creation">
+              <Attributes>
+                <Map>
+                  <entry key="totalObjectMessages">
+                    <value>
+                      <Integer>1</Integer>
+                    </value>
+                  </entry>
+                </Map>
+              </Attributes>
+            </TaskResult>
+            <TaskResult completed="1773613149699" completionStatus="Success" host="Saha_dell" launched="1773613148532" name="Data Extract processor 001 for Identity">
+              <Attributes>
+                <Map>
+                  <entry key="executionTimeMilliseconds" value="883"/>
+                  <entry key="extractDetails">
+                    <value>
+                      <List>
+                        <TaskStatistics name="Published Object Types">
+                          <TaskStatistics name="extractedObject type">
+                            <TaskStatistic data="1" name="identity"/>
+                          </TaskStatistics>
+                        </TaskStatistics>
+                      </List>
+                    </value>
+                  </entry>
+                  <entry key="totalExtractedObjects" value="1"/>
+                  <entry key="totalExtractedObjectsPublished" value="1"/>
+                  <entry key="totalSeenObjects" value="1"/>
+                </Map>
+              </Attributes>
+              <Progress>Initializing</Progress>
+            </TaskResult>
+            <TaskResult completed="1773613150029" completionStatus="Success" host="Saha_dell" launched="1773613149816" name="Finish Request"/>
+          </List>
+        </value>
+      </entry>
+    </Map>
+  </Attributes>
+  <Definition>
+    <Reference class="sailpoint.object.TaskDefinition" name="Dispatch Access History"/>
+  </Definition>
+  <Owner>
+    <Reference class="sailpoint.object.Identity" name="spadmin"/>
+  </Owner>
+</TaskResult>

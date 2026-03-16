@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE TaskResult PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<TaskResult completed="1773389635685" completionStatus="Error" host="Saha_dell" launched="1773389634516" launcher="spadmin" name="HRMS Employee Aggregation" runLength="1" runLengthAverage="4" runLengthDeviation="-75" schedule="4bdfc2de106146768cc4c61011402be7" type="AccountAggregation">
+  <Attributes>
+    <Map>
+      <entry key="applications" value="HRMS"/>
+      <entry key="internalUpdates" value="1"/>
+      <entry key="policies"/>
+    </Map>
+  </Attributes>
+  <Definition>
+    <Reference class="sailpoint.object.TaskDefinition" name="HRMS Employee Aggregation"/>
+  </Definition>
+  <Messages>
+    <Message key="aggr_exception_grp_schema" type="Error">
+      <Parameters>
+        <String>account</String>
+        <String>HRMS</String>
+        <String>Unable to create iterator sailpoint.connector.ConnectorException: Unable to open filestream for file: /usr/bin/HRMS_DIR/empFeed.csv</String>
+      </Parameters>
+    </Message>
+  </Messages>
+  <Owner>
+    <Reference class="sailpoint.object.Identity" name="spadmin"/>
+  </Owner>
+</TaskResult>

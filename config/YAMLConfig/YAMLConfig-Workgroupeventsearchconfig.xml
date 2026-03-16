@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE YAMLConfig PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<YAMLConfig name="workgroupEventSearchConfig" type="SearchMap">
+  <YamlText>
+      
+      searchConfigDescriptors:
+        WorkgroupChanged:
+          searchEventConfigDescriptors:
+            - property: name,email,displayName,displayableName,inactive,description
+              searchPropertyConfigDescriptors:
+                - property: oldValue
+                - property: newValue
+            - property: owner
+              searchPropertyConfigDescriptors:
+                - property: oldValue
+                - property: newValue
+                - property: qryProperty1
+                  jsonSource: eventDetails
+                  attributePath: /id/oldValue
+                - property: qryProperty2
+                  jsonSource: eventDetails
+                  attributePath: /id/newValue
+            - property: capabilities
+              searchPropertyConfigDescriptors:
+                - property: oldValue
+                - property: newValue
+                - property: qryProperty1
+                  jsonSource: eventDetails
+                  attributePath: /newValue/id
+                - property: qryProperty2
+                  jsonSource: eventDetails
+                  attributePath: /oldValue/id
+            - property: notificationOption,attributes
+              searchPropertyConfigDescriptors:
+                - property: oldValue
+                - property: newValue
+                - property: qryProperty1
+                  jsonSource: eventDetails
+                  attributePath: /attributeType
+                - property: propertyName
+                  jsonSource: eventDetails
+                  attributePath: /attributeName
+      
+    </YamlText>
+</YAMLConfig>

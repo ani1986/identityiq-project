@@ -1,0 +1,5 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE SyslogEvent PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<SyslogEvent classname="sailpoint.server.HeartbeatService" eventLevel="ERROR" lineNumber="251" quickKey="0000000008" server="Saha_dell" thread="ServerThread" username="Services">
+  <EventMessage>Heartbeat thinks its own server crashed! Saha_dell</EventMessage>
+</SyslogEvent>

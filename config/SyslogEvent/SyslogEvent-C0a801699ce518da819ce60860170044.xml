@@ -1,0 +1,22 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE SyslogEvent PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<SyslogEvent classname="sailpoint.api.Aggregator" eventLevel="ERROR" lineNumber="1916" quickKey="0000000018" server="Saha_dell" thread="QuartzScheduler_Worker-2" username="Scheduler">
+  <EventMessage>Exception during aggregation of Object Type Account on Application HRMS. Reason: Unable to create iterator sailpoint.connector.ConnectorException: Unable to open filestream for file: /usr/bin/HRMS_DIR/empFeed.csv</EventMessage>
+  <Stacktrace>sailpoint.connector.ConnectorException: Unable to open filestream for file: /usr/bin/HRMS_DIR/empFeed.csv
+	at sailpoint.connector.DelimitedFileConnector.getStream(DelimitedFileConnector.java:971)
+	at sailpoint.connector.DelimitedFileConnector.iterateObjects(DelimitedFileConnector.java:235)
+	at sailpoint.connector.ConnectorProxy.iterateInternal(ConnectorProxy.java:777)
+	at sailpoint.connector.ConnectorProxy.iterateObjects(ConnectorProxy.java:745)
+	at sailpoint.api.Aggregator.primaryAccountAggregation(Aggregator.java:2942)
+	at sailpoint.api.Aggregator.aggregateApplication(Aggregator.java:2836)
+	at sailpoint.api.Aggregator.phaseAggregate(Aggregator.java:2703)
+	at sailpoint.api.Aggregator.execute(Aggregator.java:2200)
+	at sailpoint.task.ResourceIdentityScan.doUnpartitioned(ResourceIdentityScan.java:251)
+	at sailpoint.task.ResourceIdentityScan.execute(ResourceIdentityScan.java:231)
+	at sailpoint.api.TaskManager.runSync(TaskManager.java:981)
+	at sailpoint.api.TaskManager.runSync(TaskManager.java:764)
+	at sailpoint.scheduler.JobAdapter.execute(JobAdapter.java:128)
+	at org.quartz.core.JobRunShell.run(JobRunShell.java:202)
+	at org.quartz.simpl.SimpleThreadPool$WorkerThread.run(SimpleThreadPool.java:573)
+</Stacktrace>
+</SyslogEvent>

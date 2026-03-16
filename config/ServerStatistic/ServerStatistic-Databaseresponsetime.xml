@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE ServerStatistic PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<ServerStatistic name="databaseResponseTime" snapshotName="1773382657162" value="3" valueType="long">
+  <Host>
+    <Reference class="sailpoint.object.Server" name="Saha_dell"/>
+  </Host>
+  <MonitoringStatisticRef>
+    <Reference class="sailpoint.object.MonitoringStatistic" name="databaseResponseTime"/>
+  </MonitoringStatisticRef>
+</ServerStatistic>

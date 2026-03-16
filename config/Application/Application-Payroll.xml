@@ -1,0 +1,180 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE Application PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<Application connector="sailpoint.connector.JDBCConnector" featuresString="DISCOVER_SCHEMA, PROVISIONING, SYNC_PROVISIONING, DIRECT_PERMISSIONS, SEARCH, ENABLE, UNLOCK" icon="databaseIcon" name="Payroll" profileClass="spadmin" type="JDBC">
+  <Attributes>
+    <Map>
+      <entry key="SQL" value="SELECT &#13;&#10;    userid,&#13;&#10;    firstname,&#13;&#10;    lastname,&#13;&#10;    emailid,&#13;&#10;    mobile,&#13;&#10;    status&#13;&#10;FROM users;"/>
+      <entry key="afterProvisioningRule"/>
+      <entry key="aggregationMode">
+        <value>
+          <Boolean/>
+        </value>
+      </entry>
+      <entry key="beforeProvisioningRule"/>
+      <entry key="compositeDefinition"/>
+      <entry key="connMaxRetry" value="3"/>
+      <entry key="connRetryEnable">
+        <value>
+          <Boolean/>
+        </value>
+      </entry>
+      <entry key="connWaitTimeForRetry" value="2"/>
+      <entry key="deltaTable"/>
+      <entry key="driverClass" value="com.mysql.cj.jdbc.Driver"/>
+      <entry key="getDeltaSQL"/>
+      <entry key="getObjectSQL" value="SELECT &#13;&#10;    u.userid,&#13;&#10;    u.firstname,&#13;&#10;    u.lastname,&#13;&#10;    u.emailid,&#13;&#10;    u.mobile,&#13;&#10;    u.status,&#13;&#10;    g.group_name&#13;&#10;FROM users u&#13;&#10;LEFT JOIN user_groups ug ON u.userid = ug.userid&#13;&#10;LEFT JOIN groups_master g ON ug.groupid = g.groupid&#13;&#10;WHERE u.userid = ?"/>
+      <entry key="group.SQL" value="SELECT 1"/>
+      <entry key="group.aggregationMode">
+        <value>
+          <Boolean/>
+        </value>
+      </entry>
+      <entry key="group.deltaTable"/>
+      <entry key="group.driverClass" value="com.mysql.cj.jdbc.Driver"/>
+      <entry key="group.getDeltaSQL"/>
+      <entry key="group.getObjectSQL" value="SELECT &#13;&#10;    groupid,&#13;&#10;    group_name,&#13;&#10;    group_description&#13;&#10;FROM users;"/>
+      <entry key="group.isPermissionEnabled">
+        <value>
+          <Boolean/>
+        </value>
+      </entry>
+      <entry key="group.mergeRows">
+        <value>
+          <Boolean/>
+        </value>
+      </entry>
+      <entry key="group.password" value="1:ACP:0FO5Fg714jVePoasAzE9HYG3iQ5YMPey6ls8uSi1k1Q="/>
+      <entry key="group.url" value="jdbc:mysql://localhost/user_management_db"/>
+      <entry key="group.useExecuteQuery">
+        <value>
+          <Boolean/>
+        </value>
+      </entry>
+      <entry key="group.useStoredProcedureDelta">
+        <value>
+          <Boolean/>
+        </value>
+      </entry>
+      <entry key="group.useStoredProcedureDirectPermission">
+        <value>
+          <Boolean/>
+        </value>
+      </entry>
+      <entry key="group.useStoredProcedureGetObject">
+        <value>
+          <Boolean/>
+        </value>
+      </entry>
+      <entry key="group.useStoredProcedureSqlStmt">
+        <value>
+          <Boolean/>
+        </value>
+      </entry>
+      <entry key="group.user" value="appuser"/>
+      <entry key="isPermissionEnabled">
+        <value>
+          <Boolean/>
+        </value>
+      </entry>
+      <entry key="jdbcExceptionBucketing">
+        <value>
+          <Boolean>true</Boolean>
+        </value>
+      </entry>
+      <entry key="mergeRows">
+        <value>
+          <Boolean/>
+        </value>
+      </entry>
+      <entry key="nativeChangeDetectionAttributeScope" value="entitlements"/>
+      <entry key="nativeChangeDetectionAttributes"/>
+      <entry key="nativeChangeDetectionEnabled">
+        <value>
+          <Boolean/>
+        </value>
+      </entry>
+      <entry key="nativeChangeDetectionOperations"/>
+      <entry key="partitionMode">
+        <value>
+          <Boolean/>
+        </value>
+      </entry>
+      <entry key="partitionStatements"/>
+      <entry key="password" value="1:ACP:6M0USDPn3Mss5tcle/zdtwwO1tx3CslZKn/XK7d1jW0="/>
+      <entry key="provisionRule" value="globalRule"/>
+      <entry key="sysDescriptions">
+        <value>
+          <Map>
+            <entry key="en_US"/>
+          </Map>
+        </value>
+      </entry>
+      <entry key="templateApplication" value="JDBC Template"/>
+      <entry key="testConnSQL" value="SELECT 1"/>
+      <entry key="url" value="jdbc:mysql://localhost/user_management_db"/>
+      <entry key="useExecuteQuery">
+        <value>
+          <Boolean/>
+        </value>
+      </entry>
+      <entry key="useStoredProcedureDelta">
+        <value>
+          <Boolean/>
+        </value>
+      </entry>
+      <entry key="useStoredProcedureDirectPermission">
+        <value>
+          <Boolean/>
+        </value>
+      </entry>
+      <entry key="useStoredProcedureGetObject">
+        <value>
+          <Boolean/>
+        </value>
+      </entry>
+      <entry key="useStoredProcedurePartition">
+        <value>
+          <Boolean/>
+        </value>
+      </entry>
+      <entry key="useStoredProcedureSqlStmt">
+        <value>
+          <Boolean/>
+        </value>
+      </entry>
+      <entry key="useStoredProcedureTestConn">
+        <value>
+          <Boolean/>
+        </value>
+      </entry>
+      <entry key="user" value="appuser"/>
+    </Map>
+  </Attributes>
+  <Owner>
+    <Reference class="sailpoint.object.Identity" name="spadmin"/>
+  </Owner>
+  <Schemas>
+    <Schema displayAttribute="userid" identityAttribute="userid" instanceAttribute="" nativeObjectType="account" objectType="account" permissionsRemediationModificationType="None">
+      <AttributeDefinition name="userid" type="string">
+        <Description/>
+      </AttributeDefinition>
+      <AttributeDefinition name="firstname" type="string">
+        <Description/>
+      </AttributeDefinition>
+      <AttributeDefinition name="lastname" type="string">
+        <Description/>
+      </AttributeDefinition>
+      <AttributeDefinition name="emailid" type="string">
+        <Description/>
+      </AttributeDefinition>
+      <AttributeDefinition name="mobile" type="string">
+        <Description/>
+      </AttributeDefinition>
+      <AttributeDefinition name="status" type="string">
+        <Description/>
+      </AttributeDefinition>
+    </Schema>
+    <Schema descriptionAttribute="" displayAttribute="" identityAttribute="" instanceAttribute="" nativeObjectType="" objectType="group" permissionsRemediationModificationType="None"/>
+  </Schemas>
+  <ApplicationScorecard/>
+</Application>

@@ -1,0 +1,254 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE AdaptiveCardNotificationTemplate PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<AdaptiveCardNotificationTemplate name="LCM Identity Update Approval Adaptive Card">
+  <Body>
+      
+{
+    "type": "AdaptiveCard",
+    "$schema": "https://adaptivecards.io/schemas/adaptive-card.json",
+    "version": "1.5",
+    "body": [
+        {
+            "type": "TextBlock",
+            "text": "_${launcher}_ is requesting the following changes for **${identityDisplayName}**",
+            "wrap": true,
+            "horizontalAlignment": "Left"
+        }
+#if  ( $approvalSet.items )
+  #foreach ($approvalItem in $approvalSet.items)
+         ,
+        {
+            "type": "Table",
+            "columns": [
+                {
+                    "width": 1
+                },
+                {
+                    "width": 1
+                }
+            ],
+            "rows": [
+                {
+                    "type": "TableRow",
+                    "cells": [
+                        {
+                            "type": "TableCell",
+                            "items": [
+                                {
+                                    "type": "TextBlock",
+                                    "text": "Application",
+                                    "wrap": true
+                                }
+                            ]
+                        },
+                        {
+                            "type": "TableCell",
+                            "items": [
+                                {
+                                    "type": "TextBlock",
+                                    "text": "$approvalItem.applicationName",
+                                    "wrap": true
+                                }
+                            ]
+                        }
+                    ]
+                }
+    #if ( $approvalItem.nativeIdentity )
+                ,{
+                    "type": "TableRow",
+                    "cells": [
+                        {
+                            "type": "TableCell",
+                            "items": [
+                                {
+                                    "type": "TextBlock",
+                                    "text": "Account",
+                                    "wrap": true
+                                }
+                            ]
+                        },
+                        {
+                            "type": "TableCell",
+                            "items": [
+                                {
+                                    "type": "TextBlock",
+                                    "text": "$approvalItem.nativeIdentity",
+                                    "wrap": true
+                                }
+                            ]
+                        }
+                    ]
+                }
+    #end
+                ,{
+                    "type": "TableRow",
+                    "cells": [
+                        {
+                            "type": "TableCell",
+                            "items": [
+                                {
+                                    "type": "TextBlock",
+                                    "text": "Operation",
+                                    "wrap": true
+                                }
+                            ]
+                        },
+                        {
+                            "type": "TableCell",
+                            "items": [
+                                {
+                                    "type": "TextBlock",
+                                    "text": "$approvalItem.operation",
+                                    "wrap": true
+                                }
+                            ]
+                        }
+                    ]
+                }
+    #if ( $approvalItem.displayName )
+      #set ($attribute = $approvalItem.displayName)
+    #elseif ( $approvalItem.name )
+      #set ($attribute = $approvalItem.name)
+    #end
+    #if ($attribute)
+                ,{
+                    "type": "TableRow",
+                    "cells": [
+                        {
+                            "type": "TableCell",
+                            "items": [
+                                {
+                                    "type": "TextBlock",
+                                    "text": "Attribute",
+                                    "wrap": true
+                                }
+                            ]
+                        },
+                        {
+                            "type": "TableCell",
+                            "items": [
+                                {
+                                    "type": "TextBlock",
+                                    "text": "$attribute",
+                                    "wrap": true
+                                }
+                            ]
+                        }
+                    ]
+                }
+    #end
+    #if ( $approvalItem.displayValue )
+      #set ($values = $approvalItem.displayValue)
+    #elseif ( $approvalItem.csv )
+      #set ($values = $approvalItem.csv)
+    #end
+    #if ($values)
+                ,{
+                    "type": "TableRow",
+                    "cells": [
+                        {
+                            "type": "TableCell",
+                            "items": [
+                                {
+                                    "type": "TextBlock",
+                                    "text": "Values(s)",
+                                    "wrap": true
+                                }
+                            ]
+                        },
+                        {
+                            "type": "TableCell",
+                            "items": [
+                                {
+                                    "type": "TextBlock",
+                                    "text": "${values}",
+                                    "wrap": true
+                                }
+                            ]
+                        }
+                    ]
+                }
+    #end
+    #if ( $item.level )
+                ,{
+                    "type": "TableRow",
+                    "cells": [
+                        {
+                            "type": "TableCell",
+                            "items": [
+                                {
+                                    "type": "TextBlock",
+                                    "text": "Priority",
+                                    "wrap": true
+                                }
+                            ]
+                        },
+                        {
+                            "type": "TableCell",
+                            "items": [
+                                {
+                                    "type": "TextBlock",
+                                    "text": "$item.level",
+                                    "wrap": true
+                                }
+                            ]
+                        }
+                    ]
+                }
+    #end
+    #if ( $approvalItem.requesterComments )
+                ,{
+                    "type": "TableRow",
+                    "cells": [
+                        {
+                            "type": "TableCell",
+                            "items": [
+                                {
+                                    "type": "TextBlock",
+                                    "text": "Requester Comments",
+                                    "wrap": true
+                                }
+                            ]
+                        },
+                        {
+                            "type": "TableCell",
+                            "items": [
+                                {
+                                    "type": "TextBlock",
+                                    "text": "$approvalItem.requesterComments",
+                                    "wrap": true
+                                }
+                            ]
+                        }
+                    ]
+                }
+    #end
+
+            ],
+            "firstRowAsHeaders": false,
+            "roundedCorners": true,
+            "spacing": "ExtraLarge"
+        }
+  #end
+#end
+        ,
+        {
+            "type": "ActionSet",
+            "actions": [
+              {
+                "type": "Action.OpenUrl",
+                "title": "$adaptiveCardButtonName",
+                "url": "$webUrl"
+             }
+           ]
+        }
+    ]
+} 
+    </Body>
+  <Description>
+      Adaptive Card Notification Template for notifying approvers when they need to approve a request made through LCM.
+      Note that in addition to the declared arguments, all workflow variables,
+      Step arguments, and Approval arguments defined in the Workflow are
+      also available.
+    </Description>
+</AdaptiveCardNotificationTemplate>

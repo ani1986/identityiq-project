@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE TaskResult PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<TaskResult completed="1773613140381" completionStatus="Success" host="Saha_dell" launched="1773613137886" launcher="System" name="Check expired mitigations daily" runLength="2" schedule="Check expired mitigations daily" type="System">
+  <Attributes>
+    <Map>
+      <entry key="expired">
+        <value>
+          <Integer>0</Integer>
+        </value>
+      </entry>
+      <entry key="identities">
+        <value>
+          <Integer>0</Integer>
+        </value>
+      </entry>
+    </Map>
+  </Attributes>
+  <Definition>
+    <Reference class="sailpoint.object.TaskDefinition" name="Check Expired Mitigations"/>
+  </Definition>
+  <Owner>
+    <Reference class="sailpoint.object.Identity" name="spadmin"/>
+  </Owner>
+</TaskResult>

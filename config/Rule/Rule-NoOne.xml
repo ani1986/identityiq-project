@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE Rule PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<Rule language="beanshell" name="No One" type="IdentitySelector">
+  <Description>
+      No identities are selected by this IdentitySelector rule
+    </Description>
+  <Signature returnType="boolean">
+    <Inputs>
+      <Argument name="context">
+        <Description>
+            A sailpoint.api.SailPointContext.
+          </Description>
+      </Argument>
+      <Argument name="identity">
+        <Description>
+            The identity to evaluate
+          </Description>
+      </Argument>
+    </Inputs>
+  </Signature>
+  <Source><![CDATA[
+      
+      // always return false
+      return false;
+    
+    ]]></Source>
+</Rule>
