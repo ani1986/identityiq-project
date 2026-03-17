@@ -1,5 +1,6 @@
 #!/bin/bash
 set -euo pipefail
+echo "=== DEPLOY_WAR_SH VERSION MARKER 17-MAR-2026-V1 ==="
 
 TOMCAT_WEBAPPS="/usr/bin/spBuild/opt/tomcat/webapps"
 WAR_FILE="${TOMCAT_WEBAPPS}/identityiq.war"
