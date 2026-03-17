@@ -6,6 +6,14 @@ files:
     destination: /usr/bin/spBuild/opt/tomcat/webapps
     overwrite: yes
 
+  - source: scripts
+    destination: /opt/iiq-deploy/scripts
+    overwrite: yes
+
+  - source: iiq-selenium-ant
+    destination: /opt/iiq-selenium-ant
+    overwrite: yes
+
 hooks:
   BeforeInstall:
     - location: scripts/remove_old_war.sh
@@ -20,4 +28,9 @@ hooks:
   ApplicationStart:
     - location: scripts/start_tomcat.sh
       timeout: 300
+      runas: root
+  
+  ValidateService:
+    - location: scripts/run_ui_tests.sh
+      timeout: 1800
       runas: root

@@ -47,4 +47,5 @@ artifacts:
   files:
     - appspec.yml
     - scripts/**/*
+    - iiq-selenium-ant/**/*
     - build/deploy/**/*
