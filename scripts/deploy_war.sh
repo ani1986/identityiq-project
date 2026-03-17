@@ -27,6 +27,8 @@ chmod +x iiq
 
 echo "Running IdentityIQ console import"
 ./iiq console <<EOF
+spadmin
+Virtual@123
 import sp.init-custom.xml
 quit
 EOF
