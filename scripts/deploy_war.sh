@@ -14,7 +14,9 @@ mkdir -p "${IIQ_DIR}"
 
 echo "Extracting WAR into identityiq directory"
 cd "${IIQ_DIR}"
-jar -xf "${WAR_FILE}"
+if [ -f "$WAR_FILE" ]; then
+  jar -xf "$WAR_FILE"
+fi
 
 echo "Removing WAR after extraction"
 rm -f "${WAR_FILE}"
