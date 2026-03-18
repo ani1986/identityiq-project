@@ -36,18 +36,37 @@ phases:
   build:
     commands:
       - echo "Normalizing line endings"
+      - echo "Normalizing line endings"
       - dos2unix appspec.yml || true
       - dos2unix scripts/*.sh || true
       - chmod +x scripts/*.sh
+
       - echo "===== VERIFY deploy_war.sh being packaged ====="
       - cat -n scripts/deploy_war.sh
       - sha256sum scripts/deploy_war.sh
+
       - echo "Running IdentityIQ build"
       - export ANT_HOME=/opt/apache-ant-1.10.14
       - export PATH=$ANT_HOME/bin:$PATH
       - export SPTARGET=dev
       - ./build.sh clean war
-      - echo "Listing deploy artifacts"
+
+      # WAR EXISTS FROM HERE ON
+
+      - echo "===== VERIFY identityiq.war exists ====="
+      - ls -lh build/deploy/identityiq.war
+
+      - echo "===== LIST WAR CONTENTS (TOP) ====="
+      - jar tf build/deploy/identityiq.war | head
+
+      - echo "===== VERIFY Application-Hrms.xml IN WAR ====="
+      - jar tf build/deploy/identityiq.war | grep -q "WEB-INF/config/custom/Application/Application-Hrms.xml" && echo " Application-Hrms.xml FOUND in WAR" || (echo " Application-Hrms.xml NOT FOUND in WAR" && exit 1)
+
+      - echo "===== DUMP Application-Hrms.xml FROM WAR ====="
+      - jar xf build/deploy/identityiq.war WEB-INF/config/custom/Application/Application-Hrms.xml
+      - cat WEB-INF/config/custom/Application/Application-Hrms.xml
+
+      - echo "===== LIST DEPLOY ARTIFACTS ====="
       - ls -l build/deploy
 
 artifacts:
