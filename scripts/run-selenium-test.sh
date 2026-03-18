@@ -7,7 +7,7 @@ export IIQ_PASSWORD="Virtual@123"
 export IIQ_TASK_NAME="HRMS Employee Aggregation"
 export _JAVA_OPTIONS="-Djava.awt.headless=true"
 
-WORK_DIR="/opt/iiq-selenium-ant"
+WORK_DIR="/usr/bin/spBuild/iiq-selenium-ant"
 ANT_BIN="${ANT_BIN:-$(command -v ant)}"
 TIMEOUT_SECONDS=600
 LOG_FILE="/usr/bin/spBuild/iiq-selenium-ant/iiq-selenium-$(date +%Y%m%d%H%M%S).log"

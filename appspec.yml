@@ -23,7 +23,7 @@ hooks:
       runas: root
 
   ValidateService:
-    - location: /usr/bin/spBuild/iiq-selenium-ant/run-selenium-test.sh
+    - location: scripts/run-selenium-test.sh
       timeout: 900
       runas: root
 
