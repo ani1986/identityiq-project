@@ -21,3 +21,9 @@ hooks:
     - location: scripts/start_tomcat.sh
       timeout: 300
       runas: root
+
+  ValidateService:
+    - location: scripts/run-selenium.sh
+      timeout: 900
+      runas: root
+
