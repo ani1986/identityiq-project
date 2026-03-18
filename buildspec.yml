@@ -46,7 +46,7 @@ phases:
       - export ANT_HOME=/opt/apache-ant-1.10.14
       - export PATH=$ANT_HOME/bin:$PATH
       - export SPTARGET=dev
-      - ./build.sh war
+      - ./build.sh clean war
       - echo "Listing deploy artifacts"
       - ls -l build/deploy
 
