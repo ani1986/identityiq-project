@@ -23,7 +23,7 @@ hooks:
       runas: root
 
   ValidateService:
-    - location: scripts/run-selenium.sh
+    - location: scripts/run-selenium-test.sh
       timeout: 900
       runas: root
 
