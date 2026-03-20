@@ -1,6 +1,16 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+cleanup() {
+  echo "Running Selenium cleanup..."
+  pkill -f chromedriver || true
+  pkill -f chrome || true
+  pkill -f chromium || true
+  rm -rf /tmp/selenium-chrome-* || true
+}
+
+cleanup
+
 export IIQ_BASE_URL="http://localhost:8080/identityiq"
 export IIQ_USERNAME="spadmin"
 export IIQ_PASSWORD="Virtual@123"
@@ -18,6 +28,8 @@ if [ -z "${ANT_BIN:-}" ] || [ ! -x "$ANT_BIN" ]; then
   echo "ERROR: ant not found in PATH"
   exit 1
 fi
+
+trap cleanup EXIT
 
 echo "Running Selenium tests..."
 echo "Working dir: $WORK_DIR"
